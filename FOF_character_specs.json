@@ -1,0 +1,978 @@
+[
+  {
+    "name": "Arjun Rao",
+    "title": "The Reluctant Fighter",
+    "rep": "Ordinary workers",
+    "origin": "India",
+    "age": 32,
+    "height": "178 cm",
+    "weight": "72 kg",
+    "occupation": "Government clerk",
+    "style": "Office Combat",
+    "specials": [
+      [
+        "File Breaker",
+        "↓ ↘ → + P",
+        "8–10f",
+        "Mid-range projectile; papers scatter on impact."
+      ],
+      [
+        "Pen Stab",
+        "↓ ↙ ← + K",
+        "6–8f",
+        "Fast advancing thrust; strong close-range punish."
+      ],
+      [
+        "Stamp Slam",
+        "↓ ↘ → + K",
+        "9–11f",
+        "Ground impact; catches low approaches."
+      ],
+      [
+        "ID Card Slash",
+        "↓ ↙ ← + P",
+        "8–10f",
+        "Quick advancing slash; good combo ender."
+      ]
+    ],
+    "super": [
+      "Truth Overpower",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "18–24f",
+      "Defensive counter that converts the opponent's attack into an evidence burst."
+    ],
+    "story": "A simple government clerk who processes endless paperwork discovers that citizen records are being deliberately altered by a hidden network. After seeing pensions denied, land records rewritten and ordinary families silenced, Arjun enters the FOF tournament to expose the people behind the system. He has no supernatural power—only discipline, courage and an unwillingness to look away.",
+    "personality": [
+      "Calm under pressure",
+      "Observant",
+      "Empathetic",
+      "Determined",
+      "Hates corruption"
+    ],
+    "quote": "“I'm not here to be the strongest. I'm here so ordinary people never have to suffer in silence again.”",
+    "model": "Lean-average build; white shirt, loosened charcoal tie, ID badge, dark trousers, glasses, wristwatch. Realistic cloth, leather belt/shoes and paper/ID props. Neutral front/side/back turnaround plus facial expression set.",
+    "anim": [
+      "Idle 6f",
+      "Walk 8f",
+      "Dash 6f",
+      "Crouch 4f",
+      "Jump 8f",
+      "Light attacks 4–6f",
+      "Heavy attacks 7–9f",
+      "Block 5f",
+      "Hit 5/7f",
+      "Knockdown 10f",
+      "Get-up 8f",
+      "Throw 10f",
+      "Taunt 18f",
+      "Intro 24f",
+      "Victory 30f",
+      "Defeat 24f"
+    ],
+    "normals": "Light jab, short kick, body punch, standing heavy, low sweep, aerial knee and aerial diagonal kick.",
+    "sound": "Theme: restrained orchestra with Indian percussion accents. Voice: calm, sincere male. Foley: paper snap, stamp impact, pen flick, ID-card swish, desk thud.",
+    "palette": [
+      "#D7C1A4",
+      "#2A2826",
+      "#E8E6DF",
+      "#6E5B42",
+      "#10151B"
+    ],
+    "arc": "Ordinary clerk → whistleblower → public symbol of civic courage."
+  },
+  {
+    "name": "Alexandra Moreau",
+    "title": "The Voice",
+    "rep": "Government",
+    "origin": "France / global political arena",
+    "age": 38,
+    "height": "175 cm",
+    "weight": "64 kg",
+    "occupation": "Reform politician",
+    "style": "Tactical Counter",
+    "specials": [
+      [
+        "Mandate Counter",
+        "↓ ↘ → + P",
+        "10–12f",
+        "Counter stance; punishes predictable heavy attacks."
+      ],
+      [
+        "Red Line",
+        "↓ ↙ ← + K",
+        "8–10f",
+        "Fast advancing strike that checks space."
+      ],
+      [
+        "Coalition Step",
+        "↓ ↘ → + K",
+        "9–11f",
+        "Feint/side-step that creates cross-up opportunity."
+      ],
+      [
+        "Public Address",
+        "↓ ↙ ← + P",
+        "12–14f",
+        "Short-range command pulse that interrupts pressure."
+      ]
+    ],
+    "super": [
+      "Public Mandate",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "20–26f",
+      "Absorbs a decisive strike and redirects it with a cinematic counter."
+    ],
+    "story": "A reform politician becomes famous for exposing corruption across multiple ministries. She later discovers that political crises in different countries are being deliberately synchronized by NEXUS. Alexandra enters FOF not to gain more power, but to force political institutions to become accountable to the people they represent.",
+    "personality": [
+      "Strategic",
+      "Charismatic",
+      "Disciplined",
+      "Accountable",
+      "Politically fearless"
+    ],
+    "quote": "“Authority is borrowed. The people can always take it back.”",
+    "model": "Athletic professional build; tailored dark suit, ivory blouse, practical shoes and minimal jewelry. No real political insignia. Strong readable silhouette and realistic cloth simulation.",
+    "anim": [
+      "Idle 6f",
+      "Walk 8f",
+      "Dash 6f",
+      "Crouch 4f",
+      "Jump 8f",
+      "Normals 5–9f",
+      "Counter 9f",
+      "Guard 5f",
+      "Hit 5/7f",
+      "Knockdown 10f",
+      "Get-up 8f",
+      "Throw 10f",
+      "Taunt 18f",
+      "Intro 24f",
+      "Victory 30f",
+      "Defeat 24f"
+    ],
+    "normals": "Jab, palm strike, straight kick, low kick, command elbow, aerial heel and anti-air backhand.",
+    "sound": "Theme: cinematic strings, low brass and broadcast percussion. Voice: confident female. Foley: document snap, microphone click, sharp impact and subtle crowd ambience.",
+    "palette": [
+      "#5E1F2A",
+      "#EEE4D4",
+      "#39414A",
+      "#A8A9A5",
+      "#111318"
+    ],
+    "arc": "Political influence → accountability → leadership that accepts limits on its own power."
+  },
+  {
+    "name": "Leo Martin",
+    "title": "The Champion",
+    "rep": "Sports",
+    "origin": "Brazil / global athletics",
+    "age": 27,
+    "height": "183 cm",
+    "weight": "82 kg",
+    "occupation": "Professional athlete",
+    "style": "Rushdown All-Rounder",
+    "specials": [
+      [
+        "Champion Rush",
+        "↓ ↘ → + P",
+        "12–16f",
+        "Rapid advancing punch chain; excellent pressure starter."
+      ],
+      [
+        "Sprint Hook",
+        "↓ ↙ ← + P",
+        "7–9f",
+        "Fast hook with strong counter-hit reward."
+      ],
+      [
+        "Rising Kick",
+        "↓ ↘ → + K",
+        "10–12f",
+        "Anti-air launcher."
+      ],
+      [
+        "Breakaway Step",
+        "↓ ↙ ← + K",
+        "8–10f",
+        "Invulnerable movement option with follow-up."
+      ]
+    ],
+    "super": [
+      "World Champion",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "22–30f",
+      "High-speed athletic sequence ending in a championship-style finishing strike."
+    ],
+    "story": "A globally celebrated athlete discovers that young competitors from poorer regions are being exploited by organizations connected to NEXUS. His fame gave him access to places ordinary people could not reach. Leo enters FOF to protect the next generation and prove that competition should create opportunity, not exploitation.",
+    "personality": [
+      "Competitive",
+      "Generous",
+      "Disciplined",
+      "Protective",
+      "Team-minded"
+    ],
+    "quote": "“A medal means nothing if the next generation never gets a chance to race.”",
+    "model": "Tall athletic build; original red/white competition uniform, taped hands and training shoes. Muscular but realistic proportions; cloth and sweat response for close-ups.",
+    "anim": [
+      "Idle 5f",
+      "Walk 7f",
+      "Dash 4f",
+      "Crouch 4f",
+      "Jump 7f",
+      "Punch chain 4/4/6f",
+      "Kick chain 5/7/9f",
+      "Guard 5f",
+      "Hit 5/7f",
+      "Roll 7f",
+      "Knockdown 9f",
+      "Get-up 8f",
+      "Taunt 16f",
+      "Intro 22f",
+      "Victory 30f",
+      "Defeat 22f"
+    ],
+    "normals": "Jab-cross, hook, body blow, low kick, round kick, flying knee and aerial kick.",
+    "sound": "Theme: energetic drums, stadium claps and brass. Voice: energetic male. Foley: glove impacts, foot slides, whistle and crowd swell.",
+    "palette": [
+      "#B52B2F",
+      "#F2F1EB",
+      "#22262B",
+      "#7A7E84",
+      "#12151A"
+    ],
+    "arc": "Winning for himself → protecting young athletes → becoming a champion for opportunity."
+  },
+  {
+    "name": "Maya Sen",
+    "title": "The Question",
+    "rep": "Students",
+    "origin": "India",
+    "age": 21,
+    "height": "164 cm",
+    "weight": "54 kg",
+    "occupation": "University student / technology researcher",
+    "style": "Agile Mix-Up",
+    "specials": [
+      [
+        "Question Mark",
+        "↓ ↘ → + P",
+        "10–13f",
+        "Arcing strike/projectile that changes attack timing."
+      ],
+      [
+        "Backflip Feint",
+        "↓ ↙ ← + K",
+        "9–11f",
+        "Evasive flip with optional attack follow-up."
+      ],
+      [
+        "Campus Rush",
+        "↓ ↘ → + K",
+        "12–15f",
+        "Fast multi-hit approach tool."
+      ],
+      [
+        "Shortcut",
+        "↓ ↙ ← + P",
+        "8–10f",
+        "Low-profile movement that crosses through pressure."
+      ]
+    ],
+    "super": [
+      "Open Question",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "20–28f",
+      "Rapid multi-angle sequence built around false openings."
+    ],
+    "story": "A university student working on a technology project accidentally uncovers encrypted evidence showing that NEXUS is influencing public information. When attempts are made to silence her, Maya realizes that curiosity itself has become resistance. She enters FOF to force the evidence into the open.",
+    "personality": [
+      "Curious",
+      "Witty",
+      "Brave",
+      "Analytical",
+      "Fast learner"
+    ],
+    "quote": "“If the answer is hidden, the first step is asking a better question.”",
+    "model": "Young-adult agile build; hoodie/jacket layered over student clothing, glasses and optional backpack for story scenes. Compact silhouette with strong color separation.",
+    "anim": [
+      "Idle 5f",
+      "Walk 7f",
+      "Dash 4f",
+      "Crouch 4f",
+      "Jump 6f",
+      "Normals 4–8f",
+      "Air attacks 5–8f",
+      "Block 5f",
+      "Hit 5/6f",
+      "Wall recovery 7f",
+      "Knockdown 8f",
+      "Get-up 7f",
+      "Taunt 18f",
+      "Intro 22f",
+      "Victory 28f",
+      "Defeat 22f"
+    ],
+    "normals": "Quick jab, low kick, spinning heel, slide kick, aerial knee and cross-up kick.",
+    "sound": "Theme: electronic pulse, strings and youthful percussion. Voice: bright female. Foley: phone beep, sneaker slide, digital glitch and notebook flick.",
+    "palette": [
+      "#168C9C",
+      "#142A4A",
+      "#2A76C2",
+      "#E5E1D9",
+      "#11151C"
+    ],
+    "arc": "Asking questions → uncovering manipulation → inspiring others to investigate."
+  },
+  {
+    "name": "Dr. Elena Voss",
+    "title": "The Mind",
+    "rep": "Science",
+    "origin": "Germany / international research community",
+    "age": 41,
+    "height": "172 cm",
+    "weight": "61 kg",
+    "occupation": "Physicist and AI researcher",
+    "style": "Technical Zoner",
+    "specials": [
+      [
+        "Quantum Shift",
+        "↓ ↘ → + P",
+        "7–9f",
+        "Short teleport/phase movement that can cancel pressure."
+      ],
+      [
+        "Vector Beam",
+        "↓ ↙ ← + P",
+        "11–14f",
+        "Long-range energy beam."
+      ],
+      [
+        "Field Gate",
+        "↓ ↘ → + K",
+        "10–12f",
+        "Temporary spatial gate controlling an approach lane."
+      ],
+      [
+        "Pulse Trap",
+        "↓ ↙ ← + K",
+        "9–12f",
+        "Delayed energy field that punishes movement."
+      ]
+    ],
+    "super": [
+      "Quantum Cascade",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "24–32f",
+      "Chains spatial shifts and energy bursts around the opponent."
+    ],
+    "story": "A physicist and AI researcher discovers that her energy research has been stolen and adapted for neural manipulation. Elena enters the tournament to stop scientific progress from becoming a mechanism of control. Her greatest conflict is not with technology, but with the people who refuse responsibility for how it is used.",
+    "personality": [
+      "Brilliant",
+      "Precise",
+      "Reserved",
+      "Responsible",
+      "Ethical"
+    ],
+    "quote": "“Science gives us capability. Responsibility decides what that capability becomes.”",
+    "model": "Lean scientist; practical futuristic jacket, gloves and subtle illuminated devices. Full-body rig, facial blend shapes and VFX attachment points.",
+    "anim": [
+      "Idle 7f",
+      "Walk 8f",
+      "Dash 5f",
+      "Crouch 4f",
+      "Jump 8f",
+      "Normals 5–9f",
+      "Guard 5f",
+      "Teleport 7f",
+      "Hit 5/7f",
+      "Knockdown 10f",
+      "Get-up 8f",
+      "Throw 10f",
+      "Taunt 20f",
+      "Intro 26f",
+      "Victory 30f",
+      "Defeat 24f"
+    ],
+    "normals": "Precise palm, energy blade, low sweep, aerial pulse and anti-air backhand.",
+    "sound": "Theme: synth arpeggios, strings and laboratory ambience. Voice: composed female. Foley: charge hum, energy pulse, phase crackle and digital resonance.",
+    "palette": [
+      "#1CA7B8",
+      "#E8EEF0",
+      "#102A48",
+      "#8AC6D0",
+      "#0C1118"
+    ],
+    "arc": "Science as neutral tool → responsibility for consequences → technology serving people."
+  },
+  {
+    "name": "Rafael “Rafe” Torres",
+    "title": "The Root",
+    "rep": "Farmers",
+    "origin": "Mexico / Latin American agricultural community",
+    "age": 45,
+    "height": "181 cm",
+    "weight": "94 kg",
+    "occupation": "Farmer and cooperative organizer",
+    "style": "Power Grappler",
+    "specials": [
+      [
+        "Earth Breaker",
+        "↓ ↘ → + P",
+        "12–15f",
+        "Armored ground punch with shockwave."
+      ],
+      [
+        "Harvest Hook",
+        "↓ ↙ ← + P",
+        "9–11f",
+        "Heavy hook that pulls opponents inward."
+      ],
+      [
+        "Root Hold",
+        "↓ ↘ → + K",
+        "14–18f",
+        "Command grab with ground slam."
+      ],
+      [
+        "Field Sweep",
+        "↓ ↙ ← + K",
+        "10–12f",
+        "Wide low sweep controlling space."
+      ]
+    ],
+    "super": [
+      "Harvest Judgment",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "24–32f",
+      "Command-grab sequence ending in a ground-shaking slam."
+    ],
+    "story": "A farmer and cooperative organizer discovers that food distribution is being manipulated to make communities dependent on NEXUS-linked suppliers. Rafe enters FOF because food security is not just an economic issue—it determines whether communities can remain independent.",
+    "personality": [
+      "Patient",
+      "Strong",
+      "Practical",
+      "Protective",
+      "Community-minded"
+    ],
+    "quote": "“You can control a market for a day. You cannot control people who know how to grow.”",
+    "model": "Strong working build; field jacket, boots, hat and gloves. Dust/mud material variants for stage storytelling. Heavy silhouette readable at long camera distance.",
+    "anim": [
+      "Idle 7f",
+      "Walk 9f",
+      "Dash 7f",
+      "Crouch 5f",
+      "Jump 9f",
+      "Heavy normals 8–12f",
+      "Guard 6f",
+      "Grab 8f",
+      "Hit 6/8f",
+      "Knockdown 11f",
+      "Get-up 9f",
+      "Taunt 18f",
+      "Intro 24f",
+      "Victory 30f",
+      "Defeat 26f"
+    ],
+    "normals": "Heavy punch, body blow, low sweep, shoulder charge, anti-air elbow and aerial knee.",
+    "sound": "Theme: folk strings, hand percussion and low drums. Voice: warm male. Foley: soil rumble, boot stomp, wood/metal impact.",
+    "palette": [
+      "#68733C",
+      "#705238",
+      "#D4B35A",
+      "#2A2B24",
+      "#141713"
+    ],
+    "arc": "Protecting one farm → protecting communities → defending food sovereignty."
+  },
+  {
+    "name": "David Kim",
+    "title": "The Witness",
+    "rep": "Journalism",
+    "origin": "South Korea / international media",
+    "age": 35,
+    "height": "180 cm",
+    "weight": "76 kg",
+    "occupation": "Investigative journalist",
+    "style": "Trick / Counter",
+    "specials": [
+      [
+        "Breaking News",
+        "↓ ↘ → + P",
+        "10–13f",
+        "Fast flash projectile/interrupt."
+      ],
+      [
+        "Flash Counter",
+        "↓ ↙ ← + P",
+        "8–10f",
+        "Counter using a camera flash distraction."
+      ],
+      [
+        "Dead Drop",
+        "↓ ↘ → + K",
+        "11–13f",
+        "Places a delayed trap on the ground."
+      ],
+      [
+        "Exposure",
+        "↓ ↙ ← + K",
+        "9–11f",
+        "Marks an opponent action pattern for a stronger follow-up."
+      ]
+    ],
+    "super": [
+      "Front Page",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "20–28f",
+      "Reads a repeated opponent pattern and delivers a cinematic counter."
+    ],
+    "story": "An investigative journalist repeatedly watches evidence disappear whenever he approaches powerful people. He eventually discovers that the missing stories form a pattern leading directly to NEXUS. David enters FOF carrying information that could expose the entire network.",
+    "personality": [
+      "Persistent",
+      "Skeptical",
+      "Observant",
+      "Fearless",
+      "Evidence-driven"
+    ],
+    "quote": "“A story becomes dangerous when too many people are trying to erase it.”",
+    "model": "Lean adult; press jacket/vest, camera harness, notebook and glasses. Camera is a non-lethal combat prop; no real news-company branding.",
+    "anim": [
+      "Idle 6f",
+      "Walk 8f",
+      "Dash 5f",
+      "Crouch 4f",
+      "Jump 8f",
+      "Normals 5–9f",
+      "Camera stance 6f",
+      "Block 5f",
+      "Hit 5/7f",
+      "Roll 7f",
+      "Knockdown 9f",
+      "Get-up 8f",
+      "Taunt 18f",
+      "Intro 24f",
+      "Victory 30f",
+      "Defeat 24f"
+    ],
+    "normals": "Quick palm, knee, low kick, camera-assisted feint, aerial knee and backhand.",
+    "sound": "Theme: urban beats, bass and brass stabs. Voice: dry controlled male. Foley: camera shutter, recorder beep, flash pop and paper rustle.",
+    "palette": [
+      "#111318",
+      "#5D3B78",
+      "#A5A9B0",
+      "#2B2E34",
+      "#141017"
+    ],
+    "arc": "Reporting events → discovering the pattern → becoming the witness who cannot be silenced."
+  },
+  {
+    "name": "Dr. Amara Okafor",
+    "title": "The Healer",
+    "rep": "Healthcare",
+    "origin": "Nigeria / global medical community",
+    "age": 39,
+    "height": "170 cm",
+    "weight": "66 kg",
+    "occupation": "Emergency physician",
+    "style": "Support Counter",
+    "specials": [
+      [
+        "Pulse Check",
+        "↓ ↘ → + P",
+        "8–10f",
+        "Fast palm strike with brief defensive advantage."
+      ],
+      [
+        "Triage Step",
+        "↓ ↙ ← + K",
+        "9–11f",
+        "Evasive movement that changes side."
+      ],
+      [
+        "Defib Burst",
+        "↓ ↘ → + K",
+        "10–12f",
+        "Short-range energy burst that interrupts pressure."
+      ],
+      [
+        "Safe Passage",
+        "↓ ↙ ← + P",
+        "8–10f",
+        "Defensive parry that creates space."
+      ]
+    ],
+    "super": [
+      "Life First",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "22–28f",
+      "Defensive sequence with a limited vitality recovery effect."
+    ],
+    "story": "A doctor who has worked through disasters and conflict zones discovers that NEXUS deliberately engineers crises for profit. Amara refuses to become numb to suffering. She enters FOF to confront the machinery creating victims while maintaining her central principle: preserve life whenever possible.",
+    "personality": [
+      "Compassionate",
+      "Calm",
+      "Courageous",
+      "Decisive",
+      "Protective"
+    ],
+    "quote": "“Strength is not how much damage you can cause. It is how much life you can protect.”",
+    "model": "Athletic realistic build; original medical jacket/scrubs hybrid, gloves and ID lanyard. Avoid real hospital branding. Clear facial expression range for empathy and determination.",
+    "anim": [
+      "Idle 6f",
+      "Walk 8f",
+      "Dash 6f",
+      "Crouch 4f",
+      "Jump 8f",
+      "Normals 5–9f",
+      "Guard 5f",
+      "Evasion 7f",
+      "Hit 5/7f",
+      "Knockdown 10f",
+      "Get-up 8f",
+      "Throw 10f",
+      "Taunt 18f",
+      "Intro 24f",
+      "Victory 30f",
+      "Defeat 24f"
+    ],
+    "normals": "Palm strikes, low sweep, short kick, parry, anti-air elbow and aerial knee.",
+    "sound": "Theme: warm piano, strings and soft percussion. Voice: reassuring female. Foley: monitor beep, pulse tone, controlled discharge and soft fabric movement.",
+    "palette": [
+      "#6DB9D6",
+      "#F1F3F1",
+      "#392B64",
+      "#9BC5D4",
+      "#10171B"
+    ],
+    "arc": "Healing victims → confronting the machinery creating victims → defending life without losing compassion."
+  },
+  {
+    "name": "Kai",
+    "title": "Nobody",
+    "rep": "Marginalized communities",
+    "origin": "Fictional multicultural urban background",
+    "age": 26,
+    "height": "171 cm",
+    "weight": "63 kg",
+    "occupation": "Community courier / survivalist",
+    "style": "Adaptive Mix-Up",
+    "specials": [
+      [
+        "No Rules",
+        "↓ ↘ → + P",
+        "12–15f",
+        "Irregular attack with changing timing."
+      ],
+      [
+        "Alley Switch",
+        "↓ ↙ ← + K",
+        "8–10f",
+        "Side-switching movement."
+      ],
+      [
+        "Ghost Step",
+        "↓ ↘ → + K",
+        "7–9f",
+        "Low-profile evasive dash."
+      ],
+      [
+        "Scrap Trap",
+        "↓ ↙ ← + P",
+        "10–12f",
+        "Improvised ground trap."
+      ]
+    ],
+    "super": [
+      "Unwritten",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "22–30f",
+      "Changes rhythm repeatedly and turns the opponent's expectation against them."
+    ],
+    "story": "Kai grew up overlooked by institutions and learned to survive by adapting to different people, streets and fighting styles. Rather than representing one real-world community, Kai represents people whose experiences are routinely excluded from official narratives. FOF gives Kai a platform to make invisibility impossible.",
+    "personality": [
+      "Unpredictable",
+      "Resilient",
+      "Humorous",
+      "Independent",
+      "Fiercely protective"
+    ],
+    "quote": "“You don't have to see me to know I'm still here.”",
+    "model": "Ambiguous urban silhouette; layered streetwear, hood/scarf, gloves and practical shoes. Avoid stereotypes tied to any real community. Strong movement readability.",
+    "anim": [
+      "Idle 5f",
+      "Walk 7f",
+      "Dash 4f",
+      "Crouch 4f",
+      "Jump 7f",
+      "Normals 4–8f",
+      "Low stance 5f",
+      "Roll 6f",
+      "Hit 5/6f",
+      "Wall recovery 7f",
+      "Knockdown 8f",
+      "Get-up 7f",
+      "Taunt 18f",
+      "Intro 22f",
+      "Victory 28f",
+      "Defeat 22f"
+    ],
+    "normals": "Irregular jab, low kick, elbow, slide, aerial cross-up and short-range feint.",
+    "sound": "Theme: hip-hop, hand percussion and distorted bass. Voice: adaptable young-adult tone. Foley: cloth snap, chain rattle and urban impacts.",
+    "palette": [
+      "#24272B",
+      "#D08A2D",
+      "#6B2931",
+      "#111318",
+      "#7C6B59"
+    ],
+    "arc": "Invisible person → survivor → representative of people who refuse to be defined by exclusion."
+  },
+  {
+    "name": "Commander Jonas Reed",
+    "title": "The Order",
+    "rep": "Military",
+    "origin": "United Kingdom / international peacekeeping",
+    "age": 46,
+    "height": "188 cm",
+    "weight": "91 kg",
+    "occupation": "Former peacekeeping commander",
+    "style": "Pressure Grappler",
+    "specials": [
+      [
+        "Command Lock",
+        "↓ ↘ → + P",
+        "11–14f",
+        "Arm lock command grab."
+      ],
+      [
+        "Tactical Catch",
+        "↓ ↙ ← + P",
+        "9–12f",
+        "Counter-grab against predictable strikes."
+      ],
+      [
+        "Break Formation",
+        "↓ ↘ → + K",
+        "12–15f",
+        "Armored advancing body attack."
+      ],
+      [
+        "Countermarch",
+        "↓ ↙ ← + K",
+        "9–11f",
+        "Retreat/re-entry movement that resets spacing."
+      ]
+    ],
+    "super": [
+      "Rules of Engagement",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "24–30f",
+      "Disciplined counter sequence ending in a controlled takedown."
+    ],
+    "story": "A former peacekeeping commander discovers that several missions were manipulated by NEXUS. The orders he once trusted were designed to create instability. Jonas leaves the chain of command and enters FOF to expose what happened and accept responsibility for the decisions he made.",
+    "personality": [
+      "Disciplined",
+      "Restrained",
+      "Honorable",
+      "Conflicted",
+      "Responsible"
+    ],
+    "quote": "“An order does not erase responsibility.”",
+    "model": "Fit mature build; original utility uniform and beret; no real-world military insignia or unit markings. Practical boots and gear with restrained materials.",
+    "anim": [
+      "Idle 7f",
+      "Walk 8f",
+      "Dash 6f",
+      "Crouch 5f",
+      "Jump 9f",
+      "Normals 6–10f",
+      "Guard 6f",
+      "Grab 9f",
+      "Hit 6/8f",
+      "Knockdown 10f",
+      "Get-up 9f",
+      "Taunt 18f",
+      "Intro 26f",
+      "Victory 30f",
+      "Defeat 26f"
+    ],
+    "normals": "Straight punch, low kick, shoulder check, elbow, controlled takedown and anti-air forearm.",
+    "sound": "Theme: cinematic drums, low brass and restrained choir. Voice: deep controlled male. Foley: boot impact, gear movement and heavy strike.",
+    "palette": [
+      "#3F5139",
+      "#B9A77A",
+      "#58636A",
+      "#1C211D",
+      "#151714"
+    ],
+    "arc": "Following orders → questioning orders → accepting personal responsibility."
+  },
+  {
+    "name": "Luna",
+    "title": "The Imagination",
+    "rep": "Arts",
+    "origin": "Spain / global digital arts scene",
+    "age": 29,
+    "height": "169 cm",
+    "weight": "58 kg",
+    "occupation": "Digital artist / performance designer",
+    "style": "Illusion Zoner",
+    "specials": [
+      [
+        "Masterpiece",
+        "↓ ↘ → + P",
+        "12–16f",
+        "Paint-like projectile with delayed visual effect."
+      ],
+      [
+        "Color Burst",
+        "↓ ↙ ← + P",
+        "9–11f",
+        "Short-range multi-color burst."
+      ],
+      [
+        "Mirage Frame",
+        "↓ ↘ → + K",
+        "10–13f",
+        "Creates an illusion point that changes attack origin."
+      ],
+      [
+        "Ink Step",
+        "↓ ↙ ← + K",
+        "8–10f",
+        "Evasive movement leaving a temporary decoy."
+      ]
+    ],
+    "super": [
+      "Infinite Canvas",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "26–34f",
+      "Transforms the visual space and attacks from multiple illusion points."
+    ],
+    "story": "A celebrated digital artist discovers that NEXUS manipulates public emotion through visual media. Luna realizes that images can liberate people—or make them believe a lie. She enters FOF to reclaim creative expression as a tool for truth.",
+    "personality": [
+      "Creative",
+      "Playful",
+      "Empathetic",
+      "Rebellious",
+      "Expressive"
+    ],
+    "quote": "“If they can control what people see, artists must fight for what people are allowed to imagine.”",
+    "model": "Stylized asymmetrical fashion, luminous accents and original art-tool accessories. Strong silhouette, expressive face and readable hand gestures.",
+    "anim": [
+      "Idle 6f",
+      "Walk 8f",
+      "Dash 5f",
+      "Crouch 4f",
+      "Jump 7f",
+      "Normals 5–9f",
+      "Spin 7f",
+      "Guard 5f",
+      "Hit 5/7f",
+      "Knockdown 9f",
+      "Get-up 8f",
+      "Throw 10f",
+      "Taunt 20f",
+      "Intro 26f",
+      "Victory 30f",
+      "Defeat 24f"
+    ],
+    "normals": "Brush-like swipe, spinning kick, low sweep, illusion strike, aerial spin and anti-air flourish.",
+    "sound": "Theme: orchestral strings, synth pads and art-FX textures. Voice: playful female. Foley: brush swipe, glass shimmer, canvas snap and digital bloom.",
+    "palette": [
+      "#C83E9A",
+      "#1CA8C4",
+      "#1A1B24",
+      "#8B55A8",
+      "#E2D6EA"
+    ],
+    "arc": "Creating images → understanding manipulation → using creativity to break manufactured narratives."
+  },
+  {
+    "name": "Victor Kane",
+    "title": "The Architect",
+    "rep": "Centralized power",
+    "origin": "Fictional global elite",
+    "age": 58,
+    "height": "190 cm",
+    "weight": "96 kg",
+    "occupation": "Founder of NEXUS",
+    "style": "Command / Control",
+    "specials": [
+      [
+        "Nexus Pulse",
+        "↓ ↘ → + P",
+        "9–11f",
+        "Long-range control pulse."
+      ],
+      [
+        "Dominion Field",
+        "↓ ↙ ← + P",
+        "12–15f",
+        "Temporary arena-control zone."
+      ],
+      [
+        "Control Vector",
+        "↓ ↘ → + K",
+        "10–13f",
+        "Directional force that alters opponent movement."
+      ],
+      [
+        "Prime Directive",
+        "↓ ↙ ← + K",
+        "13–17f",
+        "Delayed command effect that punishes repeated actions."
+      ],
+      [
+        "Architect's Step",
+        "→ ↓ ↘ + K",
+        "8–10f",
+        "Precise evasive repositioning."
+      ]
+    ],
+    "super": [
+      "NEXUS PRIME",
+      "↓ ↘ → ↓ ↘ → + P+K",
+      "28–38f",
+      "Temporarily changes arena rules and chains multiple control effects."
+    ],
+    "story": "Founder of NEXUS, Victor believes humanity is incapable of governing itself and that peace requires centralized control. The FOF tournament is his global social experiment: a controlled conflict designed to measure whether societies will choose freedom or surrender it for security. His ideology is the central philosophical threat of the story.",
+    "personality": [
+      "Cold",
+      "Persuasive",
+      "Patient",
+      "Authoritarian",
+      "Highly analytical"
+    ],
+    "quote": "“Freedom is an inefficient system. I intend to give humanity something better.”",
+    "model": "Older imposing executive; tailored black suit, silver hair, understated technological details. No real political likeness. Strong boss silhouette and subtle animated tech.",
+    "anim": [
+      "Idle 7f",
+      "Walk 8f",
+      "Dash 5f",
+      "Crouch 4f",
+      "Jump 8f",
+      "Normals 6–10f",
+      "Guard 5f",
+      "Control stance 7f",
+      "Hit 6/8f",
+      "Knockdown 10f",
+      "Get-up 8f",
+      "Throw 10f",
+      "Taunt 22f",
+      "Intro 30f",
+      "Victory 34f",
+      "Defeat 28f"
+    ],
+    "normals": "Precise jab, command palm, low sweep, energy pulse, anti-air backhand and aerial control strike.",
+    "sound": "Theme: dark choir, low brass, sub-bass and mechanical pulse. Voice: calm older male. Foley: system hum, digital lock, heavy pulse and controlled impact.",
+    "palette": [
+      "#0B0C10",
+      "#A7A9AC",
+      "#7D1820",
+      "#34383D",
+      "#171015"
+    ],
+    "arc": "Control creates peace → FOF reveals the cost → Victor confronts the choice between safety and freedom."
+  }
+]

@@ -1,0 +1,134 @@
+[
+  {
+    "id": "stage_metro_rain",
+    "image": "/stages/png/stage_metro_rain.png",
+    "glb": "/stages/glb/stage_metro_rain.glb",
+    "artworkIsSingleImage": true,
+    "layersRecommended": [
+      [
+        "sky",
+        0.04
+      ],
+      [
+        "far",
+        0.1
+      ],
+      [
+        "mid",
+        0.22
+      ],
+      [
+        "foreground",
+        0.48
+      ],
+      [
+        "floor",
+        1.0
+      ]
+    ],
+    "camera": {
+      "minX": -10.2,
+      "maxX": 10.2,
+      "defaultZoom": 1.0
+    }
+  },
+  {
+    "id": "stage_riverfront_sunset",
+    "image": "/stages/png/stage_riverfront_sunset.png",
+    "glb": "/stages/glb/stage_riverfront_sunset.glb",
+    "artworkIsSingleImage": true,
+    "layersRecommended": [
+      [
+        "sky",
+        0.04
+      ],
+      [
+        "far",
+        0.1
+      ],
+      [
+        "mid",
+        0.22
+      ],
+      [
+        "foreground",
+        0.48
+      ],
+      [
+        "floor",
+        1.0
+      ]
+    ],
+    "camera": {
+      "minX": -10.2,
+      "maxX": 10.2,
+      "defaultZoom": 1.0
+    }
+  },
+  {
+    "id": "stage_sky_observatory",
+    "image": "/stages/png/stage_sky_observatory.png",
+    "glb": "/stages/glb/stage_sky_observatory.glb",
+    "artworkIsSingleImage": true,
+    "layersRecommended": [
+      [
+        "sky",
+        0.04
+      ],
+      [
+        "far",
+        0.1
+      ],
+      [
+        "mid",
+        0.22
+      ],
+      [
+        "foreground",
+        0.48
+      ],
+      [
+        "floor",
+        1.0
+      ]
+    ],
+    "camera": {
+      "minX": -10.2,
+      "maxX": 10.2,
+      "defaultZoom": 1.0
+    }
+  },
+  {
+    "id": "stage_bioluminescent_ruins",
+    "image": "/stages/png/stage_bioluminescent_ruins.png",
+    "glb": "/stages/glb/stage_bioluminescent_ruins.glb",
+    "artworkIsSingleImage": true,
+    "layersRecommended": [
+      [
+        "sky",
+        0.04
+      ],
+      [
+        "far",
+        0.1
+      ],
+      [
+        "mid",
+        0.22
+      ],
+      [
+        "foreground",
+        0.48
+      ],
+      [
+        "floor",
+        1.0
+      ]
+    ],
+    "camera": {
+      "minX": -10.2,
+      "maxX": 10.2,
+      "defaultZoom": 1.0
+    }
+  }
+]

@@ -1,0 +1,50 @@
+Fighter,Representation,Special Count,Special Move,Command,Target Frames,Purpose
+Arjun Rao,Ordinary workers,4,File Breaker,↓ ↘ → + P,8–10f,Mid-range projectile; papers scatter on impact.
+Arjun Rao,Ordinary workers,4,Pen Stab,↓ ↙ ← + K,6–8f,Fast advancing thrust; strong close-range punish.
+Arjun Rao,Ordinary workers,4,Stamp Slam,↓ ↘ → + K,9–11f,Ground impact; catches low approaches.
+Arjun Rao,Ordinary workers,4,ID Card Slash,↓ ↙ ← + P,8–10f,Quick advancing slash; good combo ender.
+Alexandra Moreau,Government,4,Mandate Counter,↓ ↘ → + P,10–12f,Counter stance; punishes predictable heavy attacks.
+Alexandra Moreau,Government,4,Red Line,↓ ↙ ← + K,8–10f,Fast advancing strike that checks space.
+Alexandra Moreau,Government,4,Coalition Step,↓ ↘ → + K,9–11f,Feint/side-step that creates cross-up opportunity.
+Alexandra Moreau,Government,4,Public Address,↓ ↙ ← + P,12–14f,Short-range command pulse that interrupts pressure.
+Leo Martin,Sports,4,Champion Rush,↓ ↘ → + P,12–16f,Rapid advancing punch chain; excellent pressure starter.
+Leo Martin,Sports,4,Sprint Hook,↓ ↙ ← + P,7–9f,Fast hook with strong counter-hit reward.
+Leo Martin,Sports,4,Rising Kick,↓ ↘ → + K,10–12f,Anti-air launcher.
+Leo Martin,Sports,4,Breakaway Step,↓ ↙ ← + K,8–10f,Invulnerable movement option with follow-up.
+Maya Sen,Students,4,Question Mark,↓ ↘ → + P,10–13f,Arcing strike/projectile that changes attack timing.
+Maya Sen,Students,4,Backflip Feint,↓ ↙ ← + K,9–11f,Evasive flip with optional attack follow-up.
+Maya Sen,Students,4,Campus Rush,↓ ↘ → + K,12–15f,Fast multi-hit approach tool.
+Maya Sen,Students,4,Shortcut,↓ ↙ ← + P,8–10f,Low-profile movement that crosses through pressure.
+Dr. Elena Voss,Science,4,Quantum Shift,↓ ↘ → + P,7–9f,Short teleport/phase movement that can cancel pressure.
+Dr. Elena Voss,Science,4,Vector Beam,↓ ↙ ← + P,11–14f,Long-range energy beam.
+Dr. Elena Voss,Science,4,Field Gate,↓ ↘ → + K,10–12f,Temporary spatial gate controlling an approach lane.
+Dr. Elena Voss,Science,4,Pulse Trap,↓ ↙ ← + K,9–12f,Delayed energy field that punishes movement.
+Rafael “Rafe” Torres,Farmers,4,Earth Breaker,↓ ↘ → + P,12–15f,Armored ground punch with shockwave.
+Rafael “Rafe” Torres,Farmers,4,Harvest Hook,↓ ↙ ← + P,9–11f,Heavy hook that pulls opponents inward.
+Rafael “Rafe” Torres,Farmers,4,Root Hold,↓ ↘ → + K,14–18f,Command grab with ground slam.
+Rafael “Rafe” Torres,Farmers,4,Field Sweep,↓ ↙ ← + K,10–12f,Wide low sweep controlling space.
+David Kim,Journalism,4,Breaking News,↓ ↘ → + P,10–13f,Fast flash projectile/interrupt.
+David Kim,Journalism,4,Flash Counter,↓ ↙ ← + P,8–10f,Counter using a camera flash distraction.
+David Kim,Journalism,4,Dead Drop,↓ ↘ → + K,11–13f,Places a delayed trap on the ground.
+David Kim,Journalism,4,Exposure,↓ ↙ ← + K,9–11f,Marks an opponent action pattern for a stronger follow-up.
+Dr. Amara Okafor,Healthcare,4,Pulse Check,↓ ↘ → + P,8–10f,Fast palm strike with brief defensive advantage.
+Dr. Amara Okafor,Healthcare,4,Triage Step,↓ ↙ ← + K,9–11f,Evasive movement that changes side.
+Dr. Amara Okafor,Healthcare,4,Defib Burst,↓ ↘ → + K,10–12f,Short-range energy burst that interrupts pressure.
+Dr. Amara Okafor,Healthcare,4,Safe Passage,↓ ↙ ← + P,8–10f,Defensive parry that creates space.
+Kai,Marginalized communities,4,No Rules,↓ ↘ → + P,12–15f,Irregular attack with changing timing.
+Kai,Marginalized communities,4,Alley Switch,↓ ↙ ← + K,8–10f,Side-switching movement.
+Kai,Marginalized communities,4,Ghost Step,↓ ↘ → + K,7–9f,Low-profile evasive dash.
+Kai,Marginalized communities,4,Scrap Trap,↓ ↙ ← + P,10–12f,Improvised ground trap.
+Commander Jonas Reed,Military,4,Command Lock,↓ ↘ → + P,11–14f,Arm lock command grab.
+Commander Jonas Reed,Military,4,Tactical Catch,↓ ↙ ← + P,9–12f,Counter-grab against predictable strikes.
+Commander Jonas Reed,Military,4,Break Formation,↓ ↘ → + K,12–15f,Armored advancing body attack.
+Commander Jonas Reed,Military,4,Countermarch,↓ ↙ ← + K,9–11f,Retreat/re-entry movement that resets spacing.
+Luna,Arts,4,Masterpiece,↓ ↘ → + P,12–16f,Paint-like projectile with delayed visual effect.
+Luna,Arts,4,Color Burst,↓ ↙ ← + P,9–11f,Short-range multi-color burst.
+Luna,Arts,4,Mirage Frame,↓ ↘ → + K,10–13f,Creates an illusion point that changes attack origin.
+Luna,Arts,4,Ink Step,↓ ↙ ← + K,8–10f,Evasive movement leaving a temporary decoy.
+Victor Kane,Centralized power,5,Nexus Pulse,↓ ↘ → + P,9–11f,Long-range control pulse.
+Victor Kane,Centralized power,5,Dominion Field,↓ ↙ ← + P,12–15f,Temporary arena-control zone.
+Victor Kane,Centralized power,5,Control Vector,↓ ↘ → + K,10–13f,Directional force that alters opponent movement.
+Victor Kane,Centralized power,5,Prime Directive,↓ ↙ ← + K,13–17f,Delayed command effect that punishes repeated actions.
+Victor Kane,Centralized power,5,Architect's Step,→ ↓ ↘ + K,8–10f,Precise evasive repositioning.

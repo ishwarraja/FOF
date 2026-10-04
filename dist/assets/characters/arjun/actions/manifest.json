@@ -1,0 +1,2342 @@
+{
+  "characterId": "arjun",
+  "characterName": "Arjun Rao",
+  "source": "public/assets/characters/arjun/fighter_cutout.png",
+  "specialMoveCount": 4,
+  "actions": {
+    "idle": {
+      "image": "/assets/characters/arjun/actions/idle.png",
+      "gif": "/assets/characters/arjun/actions/idle.gif",
+      "sheetWidth": 2048,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": true,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": null,
+      "activeEndFrameExclusive": null,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        }
+      ]
+    },
+    "walk_forward": {
+      "image": "/assets/characters/arjun/actions/walk_forward.png",
+      "gif": "/assets/characters/arjun/actions/walk_forward.gif",
+      "sheetWidth": 2048,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": true,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": null,
+      "activeEndFrameExclusive": null,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        }
+      ]
+    },
+    "walk_backward": {
+      "image": "/assets/characters/arjun/actions/walk_backward.png",
+      "gif": "/assets/characters/arjun/actions/walk_backward.gif",
+      "sheetWidth": 2048,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": true,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": null,
+      "activeEndFrameExclusive": null,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        }
+      ]
+    },
+    "crouch": {
+      "image": "/assets/characters/arjun/actions/crouch.png",
+      "gif": "/assets/characters/arjun/actions/crouch.gif",
+      "sheetWidth": 1280,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": true,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": null,
+      "activeEndFrameExclusive": null,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        }
+      ]
+    },
+    "light_punch": {
+      "image": "/assets/characters/arjun/actions/light_punch.png",
+      "gif": "/assets/characters/arjun/actions/light_punch.gif",
+      "sheetWidth": 2304,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": 3,
+      "activeEndFrameExclusive": 5,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "heavy_punch": {
+      "image": "/assets/characters/arjun/actions/heavy_punch.png",
+      "gif": "/assets/characters/arjun/actions/heavy_punch.gif",
+      "sheetWidth": 3328,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": 5,
+      "activeEndFrameExclusive": 8,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 9,
+          "x": 2304,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 10,
+          "x": 2560,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 11,
+          "x": 2816,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 12,
+          "x": 3072,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "light_kick": {
+      "image": "/assets/characters/arjun/actions/light_kick.png",
+      "gif": "/assets/characters/arjun/actions/light_kick.gif",
+      "sheetWidth": 2304,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": 3,
+      "activeEndFrameExclusive": 5,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 300,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 300,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "heavy_kick": {
+      "image": "/assets/characters/arjun/actions/heavy_kick.png",
+      "gif": "/assets/characters/arjun/actions/heavy_kick.gif",
+      "sheetWidth": 3584,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": 5,
+      "activeEndFrameExclusive": 9,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 300,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 300,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 300,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 300,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 9,
+          "x": 2304,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 10,
+          "x": 2560,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 11,
+          "x": 2816,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 12,
+          "x": 3072,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 13,
+          "x": 3328,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "special_1": {
+      "image": "/assets/characters/arjun/actions/special_1.png",
+      "gif": "/assets/characters/arjun/actions/special_1.gif",
+      "sheetWidth": 3840,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": 5,
+      "activeEndFrameExclusive": 9,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 9,
+          "x": 2304,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 10,
+          "x": 2560,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 11,
+          "x": 2816,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 12,
+          "x": 3072,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 13,
+          "x": 3328,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 14,
+          "x": 3584,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "special_2": {
+      "image": "/assets/characters/arjun/actions/special_2.png",
+      "gif": "/assets/characters/arjun/actions/special_2.gif",
+      "sheetWidth": 4352,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": 6,
+      "activeEndFrameExclusive": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 9,
+          "x": 2304,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 10,
+          "x": 2560,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 11,
+          "x": 2816,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 12,
+          "x": 3072,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 13,
+          "x": 3328,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 14,
+          "x": 3584,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 15,
+          "x": 3840,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 16,
+          "x": 4096,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "special_3": {
+      "image": "/assets/characters/arjun/actions/special_3.png",
+      "gif": "/assets/characters/arjun/actions/special_3.gif",
+      "sheetWidth": 4096,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": 6,
+      "activeEndFrameExclusive": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 9,
+          "x": 2304,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 10,
+          "x": 2560,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 11,
+          "x": 2816,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 12,
+          "x": 3072,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 13,
+          "x": 3328,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 14,
+          "x": 3584,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 15,
+          "x": 3840,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "special_4": {
+      "image": "/assets/characters/arjun/actions/special_4.png",
+      "gif": "/assets/characters/arjun/actions/special_4.gif",
+      "sheetWidth": 6144,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": 8,
+      "activeEndFrameExclusive": 15,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 9,
+          "x": 2304,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 10,
+          "x": 2560,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 11,
+          "x": 2816,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 12,
+          "x": 3072,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 13,
+          "x": 3328,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 14,
+          "x": 3584,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 15,
+          "x": 3840,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 16,
+          "x": 4096,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 17,
+          "x": 4352,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 18,
+          "x": 4608,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 19,
+          "x": 4864,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 20,
+          "x": 5120,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 21,
+          "x": 5376,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 22,
+          "x": 5632,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 23,
+          "x": 5888,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "jump": {
+      "image": "/assets/characters/arjun/actions/jump.png",
+      "gif": "/assets/characters/arjun/actions/jump.gif",
+      "sheetWidth": 2560,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": 4,
+      "activeEndFrameExclusive": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "startup"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "active",
+          "hitbox": {
+            "x": 205,
+            "y": 185,
+            "width": 110,
+            "height": 110
+          }
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 9,
+          "x": 2304,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "block": {
+      "image": "/assets/characters/arjun/actions/block.png",
+      "gif": "/assets/characters/arjun/actions/block.gif",
+      "sheetWidth": 1792,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": true,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": null,
+      "activeEndFrameExclusive": null,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "loop"
+        }
+      ]
+    },
+    "hurt_high": {
+      "image": "/assets/characters/arjun/actions/hurt_high.png",
+      "gif": "/assets/characters/arjun/actions/hurt_high.gif",
+      "sheetWidth": 2048,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": null,
+      "activeEndFrameExclusive": null,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "hurt_low": {
+      "image": "/assets/characters/arjun/actions/hurt_low.png",
+      "gif": "/assets/characters/arjun/actions/hurt_low.gif",
+      "sheetWidth": 2048,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": null,
+      "activeEndFrameExclusive": null,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "knockdown": {
+      "image": "/assets/characters/arjun/actions/knockdown.png",
+      "gif": "/assets/characters/arjun/actions/knockdown.gif",
+      "sheetWidth": 3328,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": null,
+      "activeEndFrameExclusive": null,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 9,
+          "x": 2304,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 10,
+          "x": 2560,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 11,
+          "x": 2816,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 12,
+          "x": 3072,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    },
+    "ko": {
+      "image": "/assets/characters/arjun/actions/ko.png",
+      "gif": "/assets/characters/arjun/actions/ko.gif",
+      "sheetWidth": 4608,
+      "sheetHeight": 448,
+      "displayWidth": 1.45,
+      "displayHeight": 2.7,
+      "loop": false,
+      "defaultFrameDurationMs": 16.667,
+      "activeStartFrame": null,
+      "activeEndFrameExclusive": null,
+      "frames": [
+        {
+          "frame": 0,
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 1,
+          "x": 256,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 2,
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 3,
+          "x": 768,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 4,
+          "x": 1024,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 5,
+          "x": 1280,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 6,
+          "x": 1536,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 7,
+          "x": 1792,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 8,
+          "x": 2048,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 9,
+          "x": 2304,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 10,
+          "x": 2560,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 11,
+          "x": 2816,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 12,
+          "x": 3072,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 13,
+          "x": 3328,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 14,
+          "x": 3584,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 15,
+          "x": 3840,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 16,
+          "x": 4096,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        },
+        {
+          "frame": 17,
+          "x": 4352,
+          "y": 0,
+          "width": 256,
+          "height": 448,
+          "durationMs": 16.667,
+          "phase": "recovery"
+        }
+      ]
+    }
+  }
+}
