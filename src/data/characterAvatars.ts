@@ -1,4 +1,4 @@
-import { resolveCharacterAsset, withCacheBust } from '../utils/characterAssetLoader';
+import { normalizeCharacterId, resolveCharacterAsset, withCacheBust } from '../utils/characterAssetLoader';
 
 /**
  * Character Avatars & Portraits for Fate of Fighters (FOF)
@@ -87,21 +87,21 @@ function createFighterSvgPortrait(
 
 // Built-in high resolution avatars & portraits for all fighters
 export const FIGHTER_BUILTIN_AVATARS: Record<string, string> = {
-  arjun: resolveCharacterAsset('arjun', 'portrait', '/assets/characters/arjun/portrait.png'),
-  steele: resolveCharacterAsset('steele', 'portrait', '/assets/characters/steele/portrait.png'),
-  meghananda: resolveCharacterAsset('meghananda', 'portrait', '/assets/characters/meghananda/portrait.png'),
-  valeria: resolveCharacterAsset('valeria', 'portrait', '/assets/characters/valeria/portrait.png'),
-  maya: resolveCharacterAsset('maya', 'portrait', '/assets/characters/maya/portrait.svg'),
-  david: resolveCharacterAsset('david', 'portrait', '/assets/characters/david/portrait.svg'),
-  elena: resolveCharacterAsset('elena', 'portrait', '/assets/characters/elena/portrait.svg'),
-  leo: createFighterSvgPortrait('Leo', '#7c2d12', '#fb923c', '#c2410c', '#e9d5c4', '#431407', '💥'),
-  rafe: createFighterSvgPortrait('Rafe', '#4c1d95', '#c084fc', '#7e22ce', '#eed9c7', '#3b0764', '⚡'),
-  amara: createFighterSvgPortrait('Amara', '#854d0e', '#facc15', '#ca8a04', '#f5ded0', '#713f12', '☀'),
-  kai: createFighterSvgPortrait('Kai', '#155e75', '#22d3ee', '#0891b2', '#f3e5d8', '#164e63', '🗡'),
+  arjun: resolveCharacterAsset('arjun', 'portrait'),
+  steele: resolveCharacterAsset('steele', 'portrait'),
+  meghananda: resolveCharacterAsset('meghananda', 'portrait'),
+  valeria: resolveCharacterAsset('valeria', 'portrait'),
+  maya: resolveCharacterAsset('maya', 'portrait'),
+  david: resolveCharacterAsset('david', 'portrait'),
+  elena: resolveCharacterAsset('elena', 'portrait'),
+  leo: resolveCharacterAsset('leo', 'portrait'),
+  rafe: resolveCharacterAsset('rafe', 'portrait'),
+  amara: resolveCharacterAsset('amara', 'portrait'),
+  kai: resolveCharacterAsset('kai', 'portrait'),
   alexandra: createFighterSvgPortrait('Alexandra', '#831843', '#f472b6', '#db2777', '#fdf2f8', '#500724', '⚜'),
-  luna: createFighterSvgPortrait('Luna', '#312e81', '#818cf8', '#4338ca', '#e0e7ff', '#1e1b4b', '🌙'),
-  victor: createFighterSvgPortrait('Victor', '#451a03', '#fbbf24', '#b45309', '#fef3c7', '#78350f', '👑'),
-  victor_overlord: createFighterSvgPortrait('Overlord Victor', '#7f1d1d', '#f59e0b', '#dc2626', '#fef08a', '#450a0a', '☠'),
+  luna: resolveCharacterAsset('luna', 'portrait'),
+  victor: resolveCharacterAsset('victor', 'portrait'),
+  victor_overlord: resolveCharacterAsset('victor', 'portrait'),
 };
 
 /**
@@ -116,17 +116,18 @@ export function getFighterPortrait(fighter?: {
   customImageUrl?: string;
 }): string {
   if (!fighter) return resolveCharacterAsset('arjun', 'portrait');
+
+  // Dynamically bind to active combatant ID: /assets/characters/[character_id]/portrait.png
+  if (fighter.id) {
+    const norm = normalizeCharacterId(fighter.id);
+    return resolveCharacterAsset(norm, 'portrait', fighter.customImageUrl);
+  }
+
   if (fighter.customImageUrl && fighter.customImageUrl.trim().length > 0) {
     return withCacheBust(fighter.customImageUrl);
   }
   if (fighter.avatarUrl && fighter.avatarUrl.trim().length > 0) {
     return withCacheBust(fighter.avatarUrl);
-  }
-  if (fighter.id) {
-    if (FIGHTER_BUILTIN_AVATARS[fighter.id]) {
-      return FIGHTER_BUILTIN_AVATARS[fighter.id];
-    }
-    return resolveCharacterAsset(fighter.id, 'portrait');
   }
   return resolveCharacterAsset('arjun', 'portrait');
 }

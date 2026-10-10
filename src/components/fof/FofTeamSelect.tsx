@@ -6,6 +6,7 @@ import { soundFX } from '../../utils/audio';
 import { FofHumanFighterSprite } from './FofHumanFighterSprite';
 import { createFightingEntity } from '../../utils/fightingEngine';
 import { getFighterPortrait } from '../../data/characterAvatars';
+import { CHARACTER_ICONS, normalizeCharacterId } from '../../utils/characterAssetLoader';
 import { FofStageSelectModal } from './FofStageSelectModal';
 import {
   Flame,
@@ -505,7 +506,9 @@ export const FofTeamSelect: React.FC<FofTeamSelectProps> = ({ onStartMatch }) =>
                 const isInspected = inspectedCharId === char.id;
                 const p1Order = p1TeamIds.indexOf(char.id);
                 const p2Order = p2TeamIds.indexOf(char.id);
-                const customImg = customAvatarOverride[char.id] || char.avatarUrl;
+                const norm = normalizeCharacterId(char.id);
+                const dedicatedIcon = CHARACTER_ICONS[norm];
+                const displayImg = customAvatarOverride[char.id] || dedicatedIcon || char.avatarUrl;
 
                 return (
                   <div
@@ -534,19 +537,19 @@ export const FofTeamSelect: React.FC<FofTeamSelectProps> = ({ onStartMatch }) =>
                     )}
 
                     {/* Custom Image Indicator */}
-                    {customImg && (
-                      <span className="absolute bottom-2 right-2 p-1 bg-amber-500/80 rounded-full text-black" title="Custom Character Image Active">
+                    {displayImg && (
+                      <span className="absolute bottom-2 right-2 p-1 bg-amber-500/80 rounded-full text-black" title="Character Icon Active">
                         <Sparkle className="w-2.5 h-2.5" />
                       </span>
                     )}
 
                     {/* Portrait Avatar */}
                     <div className={`w-14 h-14 rounded-xl bg-gradient-to-tr ${char.avatarColor} flex items-center justify-center text-white text-xl font-black italic shadow-md overflow-hidden relative mt-1`}>
-                      {customImg ? (
+                      {displayImg ? (
                         <img
-                          src={customImg}
+                          src={displayImg}
                           alt={char.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover object-top"
                           referrerPolicy="no-referrer"
                         />
                       ) : (
@@ -683,32 +686,37 @@ export const FofTeamSelect: React.FC<FofTeamSelectProps> = ({ onStartMatch }) =>
             {inspectorTab === 'overview' && (
               <>
                 <div className="p-3 bg-gradient-to-b from-stone-950 to-black border border-white/10 rounded-xl flex items-center justify-center relative overflow-hidden h-44 shadow-inner">
-                  {customAvatarOverride[inspectedChar.id] || inspectedChar.customImageUrl || inspectedChar.avatarUrl ? (
-                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-                      <img
-                        src={customAvatarOverride[inspectedChar.id] || inspectedChar.customImageUrl || inspectedChar.avatarUrl}
-                        alt={inspectedChar.name}
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover object-center rounded-lg shadow-xl"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute bottom-2 left-2 flex items-center gap-1.5 z-10">
-                        <span className="text-[10px] font-black uppercase text-amber-400 bg-black/80 px-2 py-0.5 rounded border border-amber-500/40">
-                          {inspectedChar.role}
-                        </span>
-                        <span className="text-[9px] text-gray-300 italic font-serif truncate max-w-[200px]">
-                          "{inspectedChar.motto}"
-                        </span>
-                      </div>
+                  <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                    <img
+                      src={
+                        customAvatarOverride[inspectedChar.id] ||
+                        CHARACTER_ICONS[normalizeCharacterId(inspectedChar.id)] ||
+                        `/assets/characters/${inspectedChar.id}/select_slice.png`
+                      }
+                      alt={inspectedChar.name}
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (!target.dataset.fallback1) {
+                          target.dataset.fallback1 = 'true';
+                          target.src = getFighterPortrait(inspectedChar);
+                        } else if (!target.dataset.fallback2) {
+                          target.dataset.fallback2 = 'true';
+                          target.src = inspectedChar.customImageUrl || inspectedChar.avatarUrl || '/characters/arjun.jpg';
+                        }
+                      }}
+                      className="w-full h-full object-cover object-top rounded-lg shadow-xl"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute bottom-2 left-2 flex items-center gap-1.5 z-10">
+                      <span className="text-[10px] font-black uppercase text-amber-400 bg-black/80 px-2 py-0.5 rounded border border-amber-500/40">
+                        {inspectedChar.role}
+                      </span>
+                      <span className="text-[9px] text-gray-300 italic font-serif truncate max-w-[200px]">
+                        "{inspectedChar.motto}"
+                      </span>
                     </div>
-                  ) : (
-                    <div className="scale-90">
-                      <FofHumanFighterSprite
-                        entity={createFightingEntity(inspectedChar, true, 0)}
-                        isPlayer1={true}
-                      />
-                    </div>
-                  )}
+                  </div>
                 </div>
 
                 {/* Stat Matrix */}

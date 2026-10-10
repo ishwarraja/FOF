@@ -3,6 +3,7 @@ import { FOF_CHARACTERS, FOF_BOSSES } from '../../data/fightingMoves';
 import { soundFX } from '../../utils/audio';
 import { FofHumanFighterSprite } from './FofHumanFighterSprite';
 import { createFightingEntity } from '../../utils/fightingEngine';
+import { getFighterPortrait } from '../../data/characterAvatars';
 import { BookOpen, Flame, Shield, Wind, Sparkles, Skull, Mountain, Swords, UserCheck } from 'lucide-react';
 
 export const FofCodexRoster: React.FC = () => {
@@ -75,16 +76,12 @@ export const FofCodexRoster: React.FC = () => {
                 >
                   <div className="flex items-center gap-3">
                     <div className={`w-10 h-10 rounded-lg bg-gradient-to-tr ${c.avatarColor} flex items-center justify-center text-white font-black italic shadow overflow-hidden relative`}>
-                      {c.avatarUrl ? (
-                        <img
-                          src={c.avatarUrl}
-                          alt={c.name}
-                          referrerPolicy="no-referrer"
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        c.name.charAt(0)
-                      )}
+                      <img
+                        src={getFighterPortrait(c)}
+                        alt={c.name}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover object-top"
+                      />
                     </div>
                     <div>
                       <h4 className="text-xs font-black italic uppercase text-white">

@@ -6,6 +6,7 @@ import { soundFX } from '../../utils/audio';
 import { FofHumanFighterSprite } from './FofHumanFighterSprite';
 import { createFightingEntity } from '../../utils/fightingEngine';
 import { getFighterPortrait } from '../../data/characterAvatars';
+import { CHARACTER_ICONS, normalizeCharacterId } from '../../utils/characterAssetLoader';
 import { FofStageSelectModal } from './FofStageSelectModal';
 import {
   Flame,
@@ -46,6 +47,87 @@ interface FofRosterIntroScreenProps {
   isMuted?: boolean;
   onToggleSound?: () => void;
 }
+
+/**
+ * Production Character Splash Card with Dynamic Asset Binding:
+ * 1. Primary: /assets/characters/[character_id]/select_slice.png
+ * 2. Secondary: /assets/characters/[character_id]/portrait.png (or portrait.svg)
+ * 3. Tertiary: fighter.customImageUrl or fighter.avatarUrl
+ * 4. Fallback: stylized cel-shaded SVG vector silhouette (strictly purges low-poly faceted 3D primitives)
+ */
+const CharacterSelectSplashCard: React.FC<{
+  fighter: FofFighterStats;
+  isExpanded: boolean;
+  isP1: boolean;
+  isP2: boolean;
+}> = ({ fighter, isExpanded, isP1, isP2 }) => {
+  const [loadFailed, setLoadFailed] = useState(false);
+  const [srcIndex, setSrcIndex] = useState(0);
+
+  const normalized = normalizeCharacterId(fighter.id);
+  const dedicatedIcon = CHARACTER_ICONS[normalized];
+
+  const candidateUrls = [
+    dedicatedIcon,
+    `/assets/characters/${fighter.id}/select_slice.png`,
+    `/assets/characters/${fighter.id}/portrait.png`,
+    `/assets/characters/${fighter.id}/portrait.svg`,
+    fighter.customImageUrl,
+    fighter.avatarUrl,
+  ].filter(Boolean) as string[];
+
+  const currentUrl = candidateUrls[srcIndex];
+
+  const handleImgError = () => {
+    if (srcIndex + 1 < candidateUrls.length) {
+      setSrcIndex(srcIndex + 1);
+    } else {
+      setLoadFailed(true);
+    }
+  };
+
+  if (!loadFailed && currentUrl) {
+    return (
+      <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+        <img
+          src={currentUrl}
+          alt={fighter.name}
+          referrerPolicy="no-referrer"
+          onError={handleImgError}
+          className={`w-full h-full object-cover object-center transition-all duration-700 ease-out filter drop-shadow-[0_12px_30px_rgba(0,0,0,0.85)] ${
+            isExpanded
+              ? 'scale-100 sm:scale-105 contrast-110 saturate-110'
+              : 'scale-125 opacity-80 group-hover:scale-130 group-hover:opacity-100'
+          }`}
+        />
+        {/* Dynamic bottom vignette for readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
+        {/* Soft color ambient wash */}
+        <div
+          className="absolute inset-0 mix-blend-overlay opacity-30 pointer-events-none"
+          style={{ backgroundColor: fighter.accentColor }}
+        />
+      </div>
+    );
+  }
+
+  // Clean stylized SVG vector silhouette fallback (strictly avoids low-poly 3D primitives)
+  return (
+    <div
+      className={`transition-all duration-500 transform ${
+        isExpanded
+          ? 'scale-125 sm:scale-140 translate-y-2'
+          : 'scale-90 opacity-70 group-hover:scale-95'
+      }`}
+    >
+      <FofHumanFighterSprite
+        entity={createFightingEntity(fighter, isP1, 0)}
+        isPlayer1={isP1 || !isP2}
+        renderModeStyle="vector"
+      />
+    </div>
+  );
+};
 
 export const FofRosterIntroScreen: React.FC<FofRosterIntroScreenProps> = ({
   onStartMatch,
@@ -549,42 +631,14 @@ export const FofRosterIntroScreen: React.FC<FofRosterIntroScreenProps> = ({
                   </div>
                 </div>
 
-                {/* Center Sprite / Dynamic Character Artwork Visualizer */}
+                {/* Center Sprite / Dynamic Character Splash Card with Full-Height Portrait Art */}
                 <div className="relative z-10 flex-1 flex items-center justify-center overflow-hidden w-full h-full">
-                  {fighter.avatarUrl || fighter.customImageUrl ? (
-                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-                      <img
-                        src={fighter.customImageUrl || fighter.avatarUrl}
-                        alt={fighter.name}
-                        referrerPolicy="no-referrer"
-                        className={`w-full h-full object-cover object-center transition-all duration-700 ease-out filter drop-shadow-[0_12px_30px_rgba(0,0,0,0.85)] ${
-                          isExpanded
-                            ? 'scale-100 sm:scale-105 contrast-110 saturate-110'
-                            : 'scale-125 opacity-80 group-hover:scale-130 group-hover:opacity-100'
-                        }`}
-                      />
-                      {/* Dynamic bottom vignette for readability */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
-                      {/* Soft color ambient wash */}
-                      <div
-                        className="absolute inset-0 mix-blend-overlay opacity-30 pointer-events-none"
-                        style={{ backgroundColor: fighter.accentColor }}
-                      />
-                    </div>
-                  ) : (
-                    <div
-                      className={`transition-all duration-500 transform ${
-                        isExpanded
-                          ? 'scale-125 sm:scale-140 translate-y-2'
-                          : 'scale-90 opacity-70 group-hover:scale-95'
-                      }`}
-                    >
-                      <FofHumanFighterSprite
-                        entity={createFightingEntity(fighter, isP1, 0)}
-                        isPlayer1={isP1 || !isP2}
-                      />
-                    </div>
-                  )}
+                  <CharacterSelectSplashCard
+                    fighter={fighter}
+                    isExpanded={isExpanded}
+                    isP1={isP1}
+                    isP2={isP2}
+                  />
                 </div>
 
                 {/* Bottom Slice Banner: Character Name & Role */}
@@ -609,14 +663,12 @@ export const FofRosterIntroScreen: React.FC<FofRosterIntroScreenProps> = ({
                     <div className="space-y-2 animate-fade-in">
                       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-white/20 pb-1">
                         <div className="flex items-center gap-2.5">
-                          {fighter.avatarUrl && (
-                            <img
-                              src={fighter.avatarUrl}
-                              alt={fighter.name}
-                              referrerPolicy="no-referrer"
-                              className="w-10 h-10 rounded-lg object-cover border border-amber-400/80 shadow-md ring-1 ring-black"
-                            />
-                          )}
+                          <img
+                            src={getFighterPortrait(fighter)}
+                            alt={fighter.name}
+                            referrerPolicy="no-referrer"
+                            className="w-10 h-10 rounded-lg object-cover border border-amber-400/80 shadow-md ring-1 ring-black"
+                          />
                           <div>
                             <div className="flex items-center gap-2">
                               <h3 className="text-base sm:text-xl font-black italic uppercase text-white tracking-tight">

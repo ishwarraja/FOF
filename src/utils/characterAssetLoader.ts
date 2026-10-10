@@ -19,20 +19,77 @@ export const ASSET_VERSION = '2026.09.18.1';
 // Direct file mappings for known custom character images in public/characters/
 const KNOWN_DIRECT_CHARACTER_FILES: Record<string, { portrait: string; icon?: string; spritesheet?: string }> = {
   arjun: {
-    portrait: '/characters/arjun.jpg',
-    icon: '/characters/arjun.jpg',
-    spritesheet: '/assets/characters/arjun/fighter_cutout.png',
+    portrait: '/characters/icon/Arjun.png',
+    icon: '/characters/icon/Arjun.png',
+    spritesheet: '/characters/arjun_battle.jpg',
   },
   steele: {
-    portrait: '/assets/characters/steele/fighter_cutout.png',
-    icon: '/assets/characters/steele/fighter_cutout.png',
-    spritesheet: '/assets/characters/steele/fighter_cutout.png',
+    portrait: '/characters/icon/Jonas.png',
+    icon: '/characters/icon/Jonas.png',
+    spritesheet: '/characters/General_Jonas_Steele_01.jpeg',
+  },
+  elena: {
+    portrait: '/characters/icon/Elena.png',
+    icon: '/characters/icon/Elena.png',
+    spritesheet: '/assets/characters/elena/texture_albedo.svg',
+  },
+  david: {
+    portrait: '/characters/icon/David.png',
+    icon: '/characters/icon/David.png',
+    spritesheet: '/assets/characters/david/texture_albedo.svg',
+  },
+  maya: {
+    portrait: '/characters/icon/Maya.png',
+    icon: '/characters/icon/Maya.png',
+    spritesheet: '/assets/characters/maya/texture_albedo.svg',
+  },
+  amara: {
+    portrait: '/characters/icon/Amara.png',
+    icon: '/characters/icon/Amara.png',
+  },
+  kai: {
+    portrait: '/characters/icon/Kai.png',
+    icon: '/characters/icon/Kai.png',
+  },
+  leo: {
+    portrait: '/characters/icon/Leo.png',
+    icon: '/characters/icon/Leo.png',
+  },
+  luna: {
+    portrait: '/characters/icon/Luna.png',
+    icon: '/characters/icon/Luna.png',
+  },
+  rafe: {
+    portrait: '/characters/icon/Rafe.png',
+    icon: '/characters/icon/Rafe.png',
+  },
+  victor: {
+    portrait: '/characters/icon/Victor.png',
+    icon: '/characters/icon/Victor.png',
   },
   meghananda: {
     portrait: '/characters/Meghananda_01.jpeg',
     icon: '/characters/Meghananda_02.jpeg',
     spritesheet: '/characters/Meghananda_01.jpeg',
   },
+};
+
+/**
+ * Mapping of character IDs to their dedicated icon file in public/characters/icon/
+ */
+export const CHARACTER_ICONS: Record<string, string> = {
+  amara: '/characters/icon/Amara.png',
+  arjun: '/characters/icon/Arjun.png',
+  david: '/characters/icon/David.png',
+  elena: '/characters/icon/Elena.png',
+  steele: '/characters/icon/Jonas.png',
+  jonas: '/characters/icon/Jonas.png',
+  kai: '/characters/icon/Kai.png',
+  leo: '/characters/icon/Leo.png',
+  luna: '/characters/icon/Luna.png',
+  maya: '/characters/icon/Maya.png',
+  rafe: '/characters/icon/Rafe.png',
+  victor: '/characters/icon/Victor.png',
 };
 
 /**
@@ -88,23 +145,43 @@ export function resolveCharacterAsset(
     return withCacheBust(customUrl);
   }
 
-  // 3. Known custom vector or image mappings in standardized directory
-  if (normalizedId === 'valeria') {
-    return withCacheBust('/characters/valeria_portrait.svg');
-  }
-  if (normalizedId === 'maya') {
-    return withCacheBust('/assets/characters/maya/portrait.svg');
-  }
-  if (normalizedId === 'david') {
-    return withCacheBust('/assets/characters/david/fighter_cutout.png');
-  }
-  if (normalizedId === 'elena') {
-    return withCacheBust('/assets/characters/elena/portrait.svg');
-  }
+  // // 3. Known custom vector or image mappings in standardized directory
+  // if (normalizedId === 'valeria') {
+  //   return withCacheBust('/characters/valeria_portrait.svg');
+  // }
+  // if (normalizedId === 'maya') {
+  //   return withCacheBust('/assets/characters/maya/portrait.svg');
+  // }
+  // if (normalizedId === 'david') {
+  //   return withCacheBust('/assets/characters/david/fighter_cutout.png');
+  // }
+  // if (normalizedId === 'elena') {
+  //   return withCacheBust('/assets/characters/elena/portrait.svg');
+  // }
 
   // 4. Standardized directory: /assets/characters/[id]/[assetType].jpeg
   if (normalizedId === 'steele' || normalizedId === 'meghananda' || normalizedId === 'arjun') {
     return withCacheBust(`/assets/characters/${normalizedId}/${assetType}.jpeg`);
+  }
+
+    // 3. Dedicated icon mappings in public/characters/icon/
+  if ((assetType === 'icon' || assetType === 'portrait') && CHARACTER_ICONS[normalizedId]) {
+    return withCacheBust(CHARACTER_ICONS[normalizedId]);
+  }
+
+  // 4. Known custom vector or image mappings in standardized directory
+  const KNOWN_PORTRAITS: Record<string, string> = {
+    arjun: '/assets/characters/arjun/portrait.png',
+    steele: '/assets/characters/steele/portrait.png',
+    meghananda: '/assets/characters/meghananda/portrait.png',
+    valeria: '/assets/characters/valeria/portrait.png',
+    elena: '/assets/characters/elena/portrait.svg',
+    david: '/assets/characters/david/portrait.svg',
+    maya: '/assets/characters/maya/portrait.svg',
+  };
+
+  if (assetType === 'portrait' && KNOWN_PORTRAITS[normalizedId]) {
+    return withCacheBust(KNOWN_PORTRAITS[normalizedId]);
   }
 
   // 5. Check known direct file mappings

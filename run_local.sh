@@ -10,4 +10,8 @@ npm run validate:source
 npm run validate:assets
 npm run validate:animation
 npm run test:combat-graphics
+
+npm run lint
+npm run build
+
 exec npm run dev
