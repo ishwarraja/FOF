@@ -8,7 +8,6 @@ import {
   Keyboard,
   Film,
   Gamepad2,
-  Bug,
   Box,
   Camera,
   Video,
@@ -18,7 +17,6 @@ import {
   Users,
   Sliders,
   Settings,
-  ShieldAlert,
 } from 'lucide-react';
 import { ControlScenario } from '../../types/fighting';
 
@@ -43,8 +41,6 @@ interface FofSettingsModalProps {
   onCycleCameraPanningPreset: () => void;
   spriteStyle: 'artwork' | 'vector';
   onToggleSpriteStyle: () => void;
-  isDebugMode: boolean;
-  onToggleDebugMode: () => void;
   onOpenControlsModal: () => void;
   onOpenReplaysModal: () => void;
   onOpenGamepadModal: () => void;
@@ -74,8 +70,6 @@ export const FofSettingsModal: React.FC<FofSettingsModalProps> = ({
   onCycleCameraPanningPreset,
   spriteStyle,
   onToggleSpriteStyle,
-  isDebugMode,
-  onToggleDebugMode,
   onOpenControlsModal,
   onOpenReplaysModal,
   onOpenGamepadModal,
@@ -400,33 +394,6 @@ export const FofSettingsModal: React.FC<FofSettingsModalProps> = ({
             <span className="text-[10px] text-stone-400">SELECT / UPLOAD &rarr;</span>
           </button>
 
-          {/* Developer / Frame Data Diagnostic Section */}
-          <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-stone-500">
-              <ShieldAlert className="w-4 h-4" />
-              <div>
-                <span className="font-bold uppercase text-[10px] block text-stone-400">
-                  DEVELOPER / DOJO HITBOX OVERLAY
-                </span>
-                <span className="text-[9px] text-stone-500">
-                  Collision boxes & frame advantage telemetry
-                </span>
-              </div>
-            </div>
-
-            <button
-              id="btn-modal-toggle-debug-hitbox"
-              onClick={onToggleDebugMode}
-              className={`px-3 py-1.5 rounded-lg border text-xs font-bold uppercase flex items-center gap-1.5 transition-all cursor-pointer ${
-                isDebugMode
-                  ? 'bg-purple-950 border-purple-400 text-purple-200 shadow-[0_0_12px_rgba(168,85,247,0.5)]'
-                  : 'bg-stone-950 border-stone-800 text-stone-500 hover:text-stone-300'
-              }`}
-            >
-              <Bug className="w-3.5 h-3.5" />
-              <span>{isDebugMode ? 'HITBOXES: ON' : 'HITBOXES: OFF'}</span>
-            </button>
-          </div>
         </div>
 
         {/* Footer */}

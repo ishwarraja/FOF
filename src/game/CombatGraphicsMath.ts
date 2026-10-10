@@ -16,7 +16,11 @@ export const COMBAT_RENDERER_MATERIAL_POLICY = {
   characterAlphaTest: 0.5,
 };
 
-export function combatPlaneZ(isPlayer1: boolean): number {
+export function combatPlaneZ(isPlayer1: boolean, activeStriker = false): number {
+  if (activeStriker) {
+    return Math.max(COMBAT_RENDERER_CONFIG.p1Z, COMBAT_RENDERER_CONFIG.p2Z)
+      + COMBAT_RENDERER_CONFIG.minimumCombatPlaneDelta;
+  }
   return isPlayer1 ? COMBAT_RENDERER_CONFIG.p1Z : COMBAT_RENDERER_CONFIG.p2Z;
 }
 

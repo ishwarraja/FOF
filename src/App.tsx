@@ -43,15 +43,6 @@ export function App() {
   const [activeStoryChapter, setActiveStoryChapter] = useState<StoryChapter | null>(null);
   const [isDriveModalOpen, setIsDriveModalOpen] = useState<boolean>(false);
   const [isReplayTheaterOpen, setIsReplayTheaterOpen] = useState<boolean>(false);
-  const [hitboxOverlayEnabled, setHitboxOverlayEnabled] = useState<boolean>(() => {
-    try {
-      const saved = localStorage.getItem('fof_debug_hitbox_mode');
-      return saved !== null ? saved === 'true' : false;
-    } catch {
-      return false;
-    }
-  });
-
   // Match State - Default initialized with FOF v2.0 Resistance vs Hegemony roster
   const [matchState, setMatchState] = useState<FofMatchState>(() => ({
     mode: 'ARCADE_3V3',
@@ -483,9 +474,6 @@ export function App() {
               onInputHistoryAdd={handleInputHistoryAdd}
               cpuDifficulty={cpuDifficulty}
               isTrainingMode={matchState.mode === 'TRAINING'}
-              hitboxOverlayEnabled={hitboxOverlayEnabled}
-              isHitboxOverlayEnabled={hitboxOverlayEnabled}
-              onToggleHitboxOverlay={setHitboxOverlayEnabled}
             />
 
             {/* Virtual Web Console & Input Controller */}
@@ -556,8 +544,6 @@ export function App() {
         {activeTab === 'training' && (
           <FofTrainingMode
             onSelectTrainingFighter={handleSelectTrainingFighter}
-            isHitboxOverlayEnabled={hitboxOverlayEnabled}
-            onToggleHitboxOverlay={setHitboxOverlayEnabled}
           />
         )}
 

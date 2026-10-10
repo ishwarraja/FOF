@@ -4,37 +4,20 @@ import { FofFighterStats } from '../../types/fighting';
 import { soundFX } from '../../utils/audio';
 import { FofHumanFighterSprite } from './FofHumanFighterSprite';
 import { createFightingEntity } from '../../utils/fightingEngine';
-import { Dumbbell, Play, Layers, Eye, EyeOff, Shield, Flame, Activity, Crosshair, Gauge, Keyboard, Film } from 'lucide-react';
+import { Dumbbell, Play, Layers, Shield, Flame, Activity, Crosshair, Gauge, Keyboard, Film } from 'lucide-react';
 import { FofControlMappingModal } from './FofControlMappingModal';
 import { FofReplayTheaterModal } from './FofReplayTheaterModal';
 
 interface FofTrainingModeProps {
   onSelectTrainingFighter: (fighter: FofFighterStats) => void;
-  isHitboxOverlayEnabled?: boolean;
-  onToggleHitboxOverlay?: (active: boolean) => void;
 }
 
-export const FofTrainingMode: React.FC<FofTrainingModeProps> = ({
-  onSelectTrainingFighter,
-  isHitboxOverlayEnabled,
-  onToggleHitboxOverlay,
-}) => {
+export const FofTrainingMode: React.FC<FofTrainingModeProps> = ({ onSelectTrainingFighter }) => {
   const characters = Object.values(FOF_CHARACTERS);
   const [selectedCharId, setSelectedCharId] = useState<string>('ignis');
   const [dummyAction, setDummyAction] = useState<'stand' | 'crouch' | 'guard' | 'counter'>('guard');
   const [isControlModalOpen, setIsControlModalOpen] = useState<boolean>(false);
   const [isReplayTheaterOpen, setIsReplayTheaterOpen] = useState<boolean>(false);
-
-  // Hitbox Overlay Mode Toggle State
-  const [hitboxOverlayMode, setHitboxOverlayMode] = useState<boolean>(() => {
-    if (isHitboxOverlayEnabled !== undefined) return isHitboxOverlayEnabled;
-    try {
-      const saved = localStorage.getItem('fof_debug_hitbox_mode');
-      return saved !== null ? saved === 'true' : true; // Default ON in Dojo Lab
-    } catch {
-      return true;
-    }
-  });
 
   const fighter = FOF_CHARACTERS[selectedCharId] || characters[0];
 
@@ -43,29 +26,8 @@ export const FofTrainingMode: React.FC<FofTrainingModeProps> = ({
     setSelectedCharId(id);
   };
 
-  const handleToggleHitbox = () => {
-    soundFX.playClick();
-    const next = !hitboxOverlayMode;
-    setHitboxOverlayMode(next);
-    try {
-      localStorage.setItem('fof_debug_hitbox_mode', String(next));
-    } catch {
-      // ignore
-    }
-    if (onToggleHitboxOverlay) {
-      onToggleHitboxOverlay(next);
-    }
-    window.dispatchEvent(new CustomEvent('fof-toggle-hitbox-overlay', { detail: next }));
-  };
-
   const handleLaunchDojo = () => {
     soundFX.playReadyFight();
-    // Ensure hitbox mode setting is persisted for the canvas
-    try {
-      localStorage.setItem('fof_debug_hitbox_mode', String(hitboxOverlayMode));
-    } catch {
-      // ignore
-    }
     onSelectTrainingFighter(fighter);
   };
 
@@ -115,24 +77,6 @@ export const FofTrainingMode: React.FC<FofTrainingModeProps> = ({
             <span>REPLAY THEATER</span>
           </button>
 
-          {/* Direct Hitbox Overlay Mode Toggle */}
-          <button
-            id="btn-dojo-toggle-hitbox"
-            onClick={handleToggleHitbox}
-            className={`px-4 py-2.5 rounded-xl border-2 font-black italic uppercase text-xs flex items-center gap-2 cursor-pointer transition-all active:scale-95 shadow-lg ${
-              hitboxOverlayMode
-                ? 'bg-purple-950/90 border-purple-400 text-purple-200 shadow-[0_0_15px_rgba(168,85,247,0.5)] ring-1 ring-purple-400/50'
-                : 'bg-black/80 hover:bg-stone-900 border-white/20 text-gray-400 hover:text-white'
-            }`}
-          >
-            {hitboxOverlayMode ? (
-              <Eye className="w-4 h-4 text-purple-300 animate-pulse" />
-            ) : (
-              <EyeOff className="w-4 h-4 text-gray-400" />
-            )}
-            <span>HITBOX OVERLAY: {hitboxOverlayMode ? 'ACTIVE [ON]' : 'DISABLED [OFF]'}</span>
-          </button>
-
           {/* Launch Practice Button */}
           <button
             id="btn-dojo-start-practice"
@@ -140,17 +84,13 @@ export const FofTrainingMode: React.FC<FofTrainingModeProps> = ({
             className="px-6 py-3 bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-black italic uppercase text-xs rounded-xl shadow-lg shadow-red-600/30 active:scale-95 transition-all cursor-pointer flex items-center gap-2"
           >
             <Play className="w-4 h-4 fill-white" />
-            START DOJO PRACTICE {hitboxOverlayMode ? '(WITH HITBOXES)' : ''}
+            START DOJO PRACTICE
           </button>
         </div>
       </div>
 
       {/* 2. Hitbox Overlay Mode Explanatory Card */}
-      <div className={`p-4 rounded-2xl border transition-all duration-200 ${
-        hitboxOverlayMode
-          ? 'bg-purple-950/40 border-purple-500/50 shadow-lg shadow-purple-950/30'
-          : 'bg-black/60 border-white/10 opacity-70'
-      }`}>
+      <div className="p-4 rounded-2xl border border-white/10 bg-black/60">
         <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-white/10">
           <div className="flex items-center gap-2">
             <Layers className="w-4 h-4 text-purple-400" />
@@ -158,10 +98,8 @@ export const FofTrainingMode: React.FC<FofTrainingModeProps> = ({
               DOJO LAB HITBOX & ATTACK RANGE SYSTEM
             </h3>
           </div>
-          <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-            hitboxOverlayMode ? 'bg-purple-900 text-purple-200 border border-purple-400' : 'bg-stone-800 text-gray-400'
-          }`}>
-            {hitboxOverlayMode ? 'RENDERS DIRECTLY ON STAGE CANVAS' : 'OVERLAY HIDDEN'}
+          <span className="px-2 py-0.5 rounded bg-stone-800 text-gray-400 text-[10px] font-bold">
+            DEV SHORTCUT: ~ / F12 DURING PRACTICE
           </span>
         </div>
 

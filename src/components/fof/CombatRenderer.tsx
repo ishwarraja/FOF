@@ -2,6 +2,7 @@ import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import * as THREE from 'three';
 import { CharacterAnimationController, actionForState, type AnimationAction, type AnimationClip } from '../../game/CharacterAnimationController';
 import type { FightingEntity, FightingProjectile } from '../../types/fighting';
+import { characterLoader, type Fighter3DRigInstance } from '../../utils/CharacterLoader';
 
 export type CameraPreset = 'DYNAMIC' | 'TOURNAMENT' | 'CINEMATIC';
 
@@ -51,6 +52,7 @@ const ACTIONS: AnimationAction[] = [
 
 interface RuntimeFighter {
   entityId: string;
+  characterId: string;
   group: THREE.Group;
   sprite: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshStandardMaterial>;
   shadow: THREE.Mesh<THREE.CircleGeometry, THREE.MeshBasicMaterial>;
@@ -61,6 +63,8 @@ interface RuntimeFighter {
   width: number;
   height: number;
   manifest: Record<string, any> | null;
+  rig: Fighter3DRigInstance | null;
+  rigLoadStarted: boolean;
 }
 
 function characterId(entity: FightingEntity): string {
@@ -170,8 +174,9 @@ async function loadAction(runtime: RuntimeFighter, id: string, action: Animation
 }
 
 function createRuntimeFighter(entity: FightingEntity): RuntimeFighter {
+  const id = characterId(entity);
   const group = new THREE.Group();
-  group.name = `Fighter_${characterId(entity)}_${entity.isPlayer1 ? 'P1' : 'P2'}`;
+  group.name = `Fighter_${id}_${entity.isPlayer1 ? 'P1' : 'P2'}`;
   const material = new THREE.MeshStandardMaterial({
     transparent: true,
     alphaTest: 0.5,
@@ -196,6 +201,7 @@ function createRuntimeFighter(entity: FightingEntity): RuntimeFighter {
 
   return {
     entityId: entity.id,
+    characterId: id,
     group,
     sprite,
     shadow,
@@ -206,7 +212,18 @@ function createRuntimeFighter(entity: FightingEntity): RuntimeFighter {
     width: 1.45,
     height: 2.7,
     manifest: null,
+    rig: null,
+    rigLoadStarted: false,
   };
+}
+
+function disposeRuntimeFighter(fighter: RuntimeFighter): void {
+  fighter.rig?.dispose();
+  fighter.sprite.geometry.dispose();
+  fighter.sprite.material.dispose();
+  fighter.shadow.geometry.dispose();
+  fighter.shadow.material.dispose();
+  for (const texture of fighter.textures.values()) texture.dispose();
 }
 
 export const CombatRenderer = React.forwardRef<FofStage25DViewHandle, CombatRendererProps>(function CombatRenderer(props, ref) {
@@ -308,26 +325,61 @@ export const CombatRenderer = React.forwardRef<FofStage25DViewHandle, CombatRend
       // Keep exactly two distinct combat planes whenever fighters are close.
       entities.forEach((entity, index) => {
         let fighter = rt.fighters.get(entity.id);
+        const id = characterId(entity);
+        if (fighter && fighter.characterId !== id) {
+          rt.scene.remove(fighter.group);
+          disposeRuntimeFighter(fighter);
+          rt.fighters.delete(entity.id);
+          fighter = undefined;
+        }
         if (!fighter) {
           fighter = createRuntimeFighter(entity);
           rt.fighters.set(entity.id, fighter);
           rt.scene.add(fighter.group);
         }
-        const id = characterId(entity);
+        if (!fighter.rigLoadStarted) {
+          fighter.rigLoadStarted = true;
+          void characterLoader.loadCharacterModel(id, entity.isPlayer1, {
+            accentColor: entity.character?.accentColor,
+          }).then((rig) => {
+            if (!rig) return;
+            if (runtimeRef.current?.fighters.get(entity.id) !== fighter) {
+              rig.dispose();
+              return;
+            }
+            fighter.rig = rig;
+            fighter.sprite.visible = false;
+            fighter.shadow.visible = false;
+            fighter.group.add(rig.group);
+          }).catch((error: unknown) => {
+            console.error(`[CombatRenderer] Could not load 3D model for "${id}".`, error);
+          });
+        }
         const action = actionForState(entity.state);
-        void loadAction(fighter, id, action, rt.textureLoader);
+        if (!fighter.rig) void loadAction(fighter, id, action, rt.textureLoader);
         fighter.controller.syncFromEntity(entity);
         const loadedTexture = fighter.textures.get(action);
         if (loadedTexture) {
           applyClipTexture(fighter, loadedTexture, fighter.manifest?.actions?.[action], fighter.controller.getFrame());
         }
 
-        const depthPlane = combatPlaneZ(index === 0);
         const attackPriority = entity.currentMove || entity.state.startsWith('SPECIAL') || entity.state === 'SUPER' || entity.state === 'CLIMAX';
+        const depthPlane = combatPlaneZ(entity.isPlayer1, !!attackPriority);
         fighter.group.position.set(safeWorldX(entity.x), safeWorldY(entity.y), depthPlane);
-        fighter.group.scale.set(entity.facing === 1 ? 1 : -1, 1, 1);
+        fighter.group.scale.set(fighter.rig ? 1 : entity.facing === 1 ? 1 : -1, 1, 1);
         fighter.group.renderOrder = combatRenderOrder(entity.isPlayer1, !!attackPriority);
         fighter.sprite.renderOrder = fighter.group.renderOrder + 1;
+        if (fighter.rig) {
+          fighter.rig.group.renderOrder = fighter.group.renderOrder + 1;
+          fighter.rig.mainMesh.traverse((object) => {
+            if ((object as THREE.Mesh).isMesh) object.renderOrder = fighter.group.renderOrder + 2;
+          });
+          fighter.rig.updatePose(entity, dt, index === 0 ? !!p.p1HitstunActive : !!p.p2HitstunActive);
+          const rigShadowState = contactShadowState(entity.y);
+          fighter.rig.shadowMesh.position.set(0, -safeWorldY(entity.y) + 0.018, 0.02);
+          fighter.rig.shadowMesh.scale.set(rigShadowState.scale, rigShadowState.scale, rigShadowState.scale);
+          (fighter.rig.shadowMesh.material as THREE.MeshBasicMaterial).opacity = rigShadowState.opacity;
+        }
 
         const altitude = Math.max(0, entity.y);
         const shadow = contactShadowState(altitude);
@@ -348,11 +400,7 @@ export const CombatRenderer = React.forwardRef<FofStage25DViewHandle, CombatRend
       for (const [id, fighter] of rt.fighters) {
         if (!activeIds.has(id)) {
           rt.scene.remove(fighter.group);
-          fighter.sprite.geometry.dispose();
-          fighter.sprite.material.dispose();
-          fighter.shadow.geometry.dispose();
-          fighter.shadow.material.dispose();
-          for (const tex of fighter.textures.values()) tex.dispose();
+          disposeRuntimeFighter(fighter);
           rt.fighters.delete(id);
         }
       }
@@ -407,8 +455,7 @@ export const CombatRenderer = React.forwardRef<FofStage25DViewHandle, CombatRend
       resizeObserver.disconnect();
       cancelAnimationFrame(state.frameId);
       for (const fighter of fighters.values()) {
-        fighter.sprite.geometry.dispose(); fighter.sprite.material.dispose(); fighter.shadow.geometry.dispose(); fighter.shadow.material.dispose();
-        for (const tex of fighter.textures.values()) tex.dispose();
+        disposeRuntimeFighter(fighter);
       }
       stage.geometry.dispose(); stageMaterial.dispose(); floor.geometry.dispose(); floorMaterial.dispose();
       renderer.dispose();

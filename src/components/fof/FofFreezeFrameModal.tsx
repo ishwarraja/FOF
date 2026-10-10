@@ -4,10 +4,8 @@ import {
   Play,
   StepForward,
   Eye,
-  EyeOff,
   Download,
   X,
-  Crosshair,
   Shield,
   Zap,
   Activity,
@@ -23,8 +21,6 @@ interface FofFreezeFrameModalProps {
   p1Entity: FightingEntity;
   p2Entity: FightingEntity;
   stageName?: string;
-  isDebugMode: boolean;
-  onToggleDebugMode: () => void;
   onTakeScreenshot: () => void;
 }
 
@@ -36,8 +32,6 @@ export const FofFreezeFrameModal: React.FC<FofFreezeFrameModalProps> = ({
   p1Entity,
   p2Entity,
   stageName = 'Kala Chakra: Sun Temple of Time',
-  isDebugMode,
-  onToggleDebugMode,
   onTakeScreenshot,
 }) => {
   const [isMinimalView, setIsMinimalView] = useState<boolean>(false);
@@ -103,7 +97,7 @@ export const FofFreezeFrameModal: React.FC<FofFreezeFrameModalProps> = ({
 
         {/* Bottom Tip */}
         <div className="text-center text-[11px] font-mono text-white/70 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-          Clean Screenshot Mode Active // Click "INSPECTOR" to view frame data and hitbox settings
+          Clean Screenshot Mode Active // Press ~ or F12 in combat to toggle diagnostics
         </div>
       </div>
     );
@@ -206,29 +200,6 @@ export const FofFreezeFrameModal: React.FC<FofFreezeFrameModalProps> = ({
                   <span>SAVE SCREENSHOT</span>
                 </>
               )}
-            </button>
-          </div>
-
-          {/* Hitbox & Visual Inspector Toggles */}
-          <div className="p-3 rounded-xl bg-stone-900/60 border border-stone-800 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Crosshair className="w-4 h-4 text-amber-400" />
-              <span className="font-bold text-stone-200">Hitbox & Collision Visualization</span>
-              <span className="text-[10px] text-stone-500 hidden sm:inline">
-                (Displays Active Hurtboxes & Attack Vectors)
-              </span>
-            </div>
-            <button
-              id="btn-freeze-toggle-hitboxes"
-              onClick={onToggleDebugMode}
-              className={`px-3 py-1.5 rounded-lg border font-mono text-[11px] font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                isDebugMode
-                  ? 'bg-amber-500/20 border-amber-400 text-amber-300'
-                  : 'bg-black/60 border-stone-700 text-stone-400 hover:text-white'
-              }`}
-            >
-              {isDebugMode ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
-              <span>{isDebugMode ? 'HITBOXES: ON' : 'HITBOXES: OFF'}</span>
             </button>
           </div>
 

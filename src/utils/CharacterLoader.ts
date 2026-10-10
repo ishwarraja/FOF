@@ -4,27 +4,29 @@
  * Production-ready centralized asset pipeline:
  * 1. Supports 3D Models (.glb / .gltf) via Three.js GLTFLoader.
  * 2. Initializes AnimationMixer with action clipping.
- * 3. Dynamic PBR Material Texture Mapping: binds available albedo (.png/.jpg/.jpeg)
- *    and normal maps (.png) to MeshStandardMaterial / MeshPhysicalMaterial.
+ * 3. Dynamic PBR Material Texture Mapping: binds available albedo, normal, and
+ *    roughness maps to physically based character materials.
  * 4. Automated Textured Card / 2.5D Quad Fallback:
  *    When no external .glb is present, projects 2D concept art onto an oriented
  *    billboard quad with alpha cutout and PBR lighting, eliminating procedural
- *    wooden/plastic mannequin primitives.
+ *    mannequin primitives.
  * 5. Ground contact shadows (PCFSoftShadowMap) and elemental auras.
  */
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { FightingEntity } from '../types/fighting';
-import { normalizeCharacterId } from './characterAssetLoader';
+import type { FightingEntity } from '../types/fighting';
+import { normalizeCharacterId } from './characterAssetLoader.ts';
 
 export interface CharacterAssetPaths {
   dir: string;
   glb: string;
   gltf: string;
   albedoCandidates: string[];
+  roughnessCandidates: string[];
   normalCandidates: string[];
   portraitCandidates: string[];
+  spriteCandidates: string[];
 }
 
 export interface Fighter3DRigInstance {
@@ -127,74 +129,11 @@ async function fileExists(url: string): Promise<boolean> {
 }
 
 /**
- * Procedural fallback texture generator.
- * Produces a high-resolution stylized martial fighter silhouette with vivid neon accents.
- * Guarantees that Three.js will never crash or reject when an image asset is missing.
- */
-function createProceduralFighterTexture(nameOrUrl: string, accentColor = '#38bdf8'): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas');
-  canvas.width = 512;
-  canvas.height = 768;
-  const ctx = canvas.getContext('2d');
-  if (ctx) {
-    ctx.clearRect(0, 0, 512, 768);
-
-    // Dynamic aura gradient
-    const grad = ctx.createLinearGradient(0, 0, 0, 768);
-    grad.addColorStop(0, accentColor);
-    grad.addColorStop(0.4, '#1e293b');
-    grad.addColorStop(1, '#020617');
-    ctx.fillStyle = grad;
-
-    // Head
-    ctx.beginPath();
-    ctx.arc(256, 170, 55, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Torso / Gi
-    ctx.beginPath();
-    ctx.moveTo(180, 240);
-    ctx.lineTo(332, 240);
-    ctx.lineTo(300, 480);
-    ctx.lineTo(212, 480);
-    ctx.closePath();
-    ctx.fill();
-
-    // Belt / Sash in accent color
-    ctx.fillStyle = accentColor;
-    ctx.fillRect(205, 470, 102, 24);
-
-    // Legs
-    ctx.fillStyle = '#0f172a';
-    ctx.fillRect(190, 494, 52, 230);
-    ctx.fillRect(270, 494, 52, 230);
-
-    // Arms
-    ctx.fillStyle = '#1e293b';
-    ctx.fillRect(132, 240, 44, 210);
-    ctx.fillRect(336, 240, 44, 210);
-
-    // Glowing combat emblem
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath();
-    ctx.arc(256, 310, 26, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = accentColor;
-    ctx.beginPath();
-    ctx.arc(256, 310, 14, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  const tex = new THREE.CanvasTexture(canvas);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  return tex;
-}
-
-/**
  * Returns candidate file paths following the standardized directory structure:
  * public/assets/characters/[character_id]/
  * ├── model.glb (or model.gltf)
  * ├── texture_albedo.jpg (or .png / .jpeg)
+ * ├── texture_roughness.jpg (or .png / .jpeg)
  * ├── texture_normal.png
  * └── portrait.png (for HUD and character select)
  */
@@ -225,11 +164,32 @@ export function getCharacterAssetPaths(rawId: string): CharacterAssetPaths {
       id === 'meghananda' ? '/characters/Meghananda_02.jpeg' : '',
       id === 'arjun' ? '/assets/characters/arjun/fighter_cutout.png' : '',
     ].filter(Boolean),
+    roughnessCandidates: [
+      `${dir}/texture_roughness.png`,
+      `${dir}/texture_roughness.jpg`,
+      `${dir}/texture_roughness.jpeg`,
+    ],
     normalCandidates: [
       `${dir}/texture_normal.png`,
       `${dir}/texture_normal.jpg`,
       `${dir}/texture_normal.jpeg`,
     ],
+    spriteCandidates: [
+      `${dir}/fighter_cutout.png`,
+      `${dir}/actions/idle.png`,
+      `${dir}/generated_source.png`,
+      `${dir}/portrait.png`,
+      `${dir}/portrait.jpg`,
+      `${dir}/portrait.jpeg`,
+      `${dir}/portrait.svg`,
+      `/characters/${id}_battle.jpg`,
+      `/characters/${id}.jpg`,
+      `/characters/${id}.png`,
+      `/characters/${id}_portrait.svg`,
+      `/characters/${id}.svg`,
+      id === 'steele' ? '/characters/General_Jonas_Steele_02.jpeg' : '',
+      id === 'meghananda' ? '/characters/Meghananda_01.jpeg' : '',
+    ].filter(Boolean),
     portraitCandidates: [
       `${dir}/portrait.png`,
       `${dir}/portrait.jpg`,
@@ -264,31 +224,30 @@ export class CharacterLoader {
   }
 
   /**
-   * Helper to load and cache textures with sRGB color space.
-   * Never throws or rejects with a browser Event: if loading fails, generates
-   * a procedural fallback texture and resolves safely.
+   * Helper to load and cache a texture with the requested color space.
    */
-  public async loadTexture(url: string, fallbackColor = '#38bdf8'): Promise<THREE.Texture> {
-    if (textureCache.has(url)) {
-      return textureCache.get(url)!;
+  public async loadTexture(
+    url: string,
+    colorSpace: THREE.ColorSpace = THREE.SRGBColorSpace
+  ): Promise<THREE.Texture> {
+    const cacheKey = `${url}|${colorSpace}`;
+    if (textureCache.has(cacheKey)) {
+      return textureCache.get(cacheKey)!;
     }
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.textureLoader.load(
         url,
         (texture) => {
-          texture.colorSpace = THREE.SRGBColorSpace;
+          texture.colorSpace = colorSpace;
           texture.generateMipmaps = true;
           texture.minFilter = THREE.LinearMipmapLinearFilter;
           texture.magFilter = THREE.LinearFilter;
-          textureCache.set(url, texture);
+          textureCache.set(cacheKey, texture);
           resolve(texture);
         },
         undefined,
         (err) => {
-          console.warn(`[CharacterLoader] Could not load texture from "${url}". Using procedural fallback.`, err);
-          const fallback = createProceduralFighterTexture(url, fallbackColor);
-          textureCache.set(url, fallback);
-          resolve(fallback);
+          reject(err instanceof Error ? err : new Error(`Could not load character texture "${url}".`));
         }
       );
     });
@@ -319,29 +278,36 @@ export class CharacterLoader {
   ): Promise<Fighter3DRigInstance> {
     const paths = getCharacterAssetPaths(characterId);
     const accentColor = options?.accentColor || (isPlayer1 ? '#f59e0b' : '#06b6d4');
+    const modelRig = await this.loadCharacterModel(characterId, isPlayer1, { accentColor });
+    if (modelRig) return modelRig;
+    return this.buildTexturedQuadRig(characterId, isPlayer1, paths, accentColor);
+  }
+
+  /**
+   * Loads only an authored GLB/GLTF model. Returns null when the character has
+   * no model or parsing fails, allowing the combat renderer to keep its animated
+   * sprite-sheet quad fallback.
+   */
+  public async loadCharacterModel(
+    characterId: string,
+    isPlayer1: boolean,
+    options?: { accentColor?: string }
+  ): Promise<Fighter3DRigInstance | null> {
+    const paths = getCharacterAssetPaths(characterId);
+    const modelUrl = await fileExists(paths.glb) ? paths.glb : await fileExists(paths.gltf) ? paths.gltf : null;
+    if (!modelUrl) return null;
 
     try {
-      // 1. Check for 3D GLB/GLTF model
-      let modelUrl: string | null = null;
-      if (await fileExists(paths.glb)) {
-        modelUrl = paths.glb;
-      } else if (await fileExists(paths.gltf)) {
-        modelUrl = paths.gltf;
-      }
-
-      if (modelUrl) {
-        try {
-          return await this.build3DGlbRig(modelUrl, characterId, isPlayer1, paths, accentColor);
-        } catch (err) {
-          console.warn(`[CharacterLoader] Failed to parse GLTF model at ${modelUrl}, falling back to textured quad.`, err);
-        }
-      }
-
-      // 2. Automated Textured Card / 2.5D Quad Fallback
-      return await this.buildTexturedQuadRig(characterId, isPlayer1, paths, accentColor);
-    } catch (err) {
-      console.warn(`[CharacterLoader] Error loading rig for ${characterId}. Falling back to procedural rig.`, err);
-      return this.buildProceduralRigFallback(characterId, isPlayer1, accentColor);
+      return await this.build3DGlbRig(
+        modelUrl,
+        characterId,
+        isPlayer1,
+        paths,
+        options?.accentColor || (isPlayer1 ? '#f59e0b' : '#06b6d4')
+      );
+    } catch (error) {
+      console.warn(`[CharacterLoader] Failed to load model "${modelUrl}"; using the sprite quad fallback.`, error);
+      return null;
     }
   }
 
@@ -369,25 +335,36 @@ export class CharacterLoader {
           // Find available concept textures to bind
           const albedoUrl = await this.resolveFirstExisting(paths.albedoCandidates);
           const normalUrl = await this.resolveFirstExisting(paths.normalCandidates);
+          const roughnessUrl = await this.resolveFirstExisting(paths.roughnessCandidates);
 
           let albedoTex: THREE.Texture | null = null;
           let normalTex: THREE.Texture | null = null;
+          let roughnessTex: THREE.Texture | null = null;
 
           if (albedoUrl) {
             try {
               albedoTex = await this.loadTexture(albedoUrl);
               albedoTex.flipY = false;
             } catch (e) {
-              console.warn('[CharacterLoader] Could not load albedo texture', e);
+              console.warn(`[CharacterLoader] Could not load albedo texture "${albedoUrl}".`, e);
             }
           }
 
           if (normalUrl) {
             try {
-              normalTex = await this.loadTexture(normalUrl);
+              normalTex = await this.loadTexture(normalUrl, THREE.NoColorSpace);
               normalTex.flipY = false;
             } catch (e) {
-              console.warn('[CharacterLoader] Could not load normal texture', e);
+              console.warn(`[CharacterLoader] Could not load normal texture "${normalUrl}".`, e);
+            }
+          }
+
+          if (roughnessUrl) {
+            try {
+              roughnessTex = await this.loadTexture(roughnessUrl, THREE.NoColorSpace);
+              roughnessTex.flipY = false;
+            } catch (e) {
+              console.warn(`[CharacterLoader] Could not load roughness texture "${roughnessUrl}".`, e);
             }
           }
 
@@ -415,15 +392,15 @@ export class CharacterLoader {
               mesh.receiveShadow = true;
 
               if (Array.isArray(mesh.material)) {
-                mesh.material = mesh.material.map((mat) => mat.clone());
+                mesh.material = mesh.material.map((mat) => this.toPbrMaterial(mat));
                 mesh.material.forEach((mat) => {
                   materials.push(mat);
-                  this.applyTexturesToPBRMaterial(mat, albedoTex, normalTex);
+                  this.applyTexturesToPBRMaterial(mat, albedoTex, normalTex, roughnessTex);
                 });
               } else if (mesh.material) {
-                mesh.material = mesh.material.clone();
+                mesh.material = this.toPbrMaterial(mesh.material);
                 materials.push(mesh.material);
-                this.applyTexturesToPBRMaterial(mesh.material, albedoTex, normalTex);
+                this.applyTexturesToPBRMaterial(mesh.material, albedoTex, normalTex, roughnessTex);
               }
             }
           });
@@ -431,18 +408,20 @@ export class CharacterLoader {
           // Animation Mixer setup
           let mixer: THREE.AnimationMixer | undefined;
           const actions = new Map<string, THREE.AnimationAction>();
+          let activeAction: THREE.AnimationAction | undefined;
 
           if (gltf.animations && gltf.animations.length > 0) {
             mixer = new THREE.AnimationMixer(model);
             gltf.animations.forEach((clip) => {
               const action = mixer!.clipAction(clip);
-              actions.set(clip.name.toLowerCase(), action);
+              actions.set(clip.name.toLowerCase().replace(/[^a-z0-9]/g, ''), action);
             });
 
             // Start with idle or first animation
             const idleAction = actions.get('idle') || actions.values().next().value;
             if (idleAction) {
               idleAction.play();
+              activeAction = idleAction;
             }
           }
 
@@ -458,6 +437,13 @@ export class CharacterLoader {
             animTimer += delta;
 
             if (mixer) {
+              const animationName = this.animationForState(entity.state, actions);
+              const nextAction = animationName ? actions.get(animationName) : undefined;
+              if (nextAction && nextAction !== activeAction) {
+                activeAction?.fadeOut(0.12);
+                nextAction.reset().fadeIn(0.12).play();
+                activeAction = nextAction;
+              }
               mixer.update(delta);
             }
 
@@ -497,12 +483,36 @@ export class CharacterLoader {
           };
 
           const dispose = () => {
+            const ownedGeometries = new Set<THREE.BufferGeometry>();
+            const ownedTextures = new Set<THREE.Texture>();
+            const sharedTextures = new Set([albedoTex, normalTex, roughnessTex].filter(
+              (texture): texture is THREE.Texture => texture !== null
+            ));
+            model.traverse((child) => {
+              if ((child as THREE.Mesh).isMesh) {
+                ownedGeometries.add((child as THREE.Mesh).geometry);
+              }
+            });
+            for (const material of materials) {
+              const pbr = material as THREE.MeshStandardMaterial;
+              const materialTextures = [
+                pbr.map, pbr.alphaMap, pbr.normalMap, pbr.roughnessMap, pbr.metalnessMap,
+                pbr.emissiveMap, pbr.aoMap, pbr.bumpMap, pbr.displacementMap, pbr.envMap, pbr.lightMap,
+              ];
+              materialTextures.forEach((texture) => {
+                if (texture && !sharedTextures.has(texture)) ownedTextures.add(texture);
+              });
+            }
+            mixer?.stopAllAction();
+            if (mixer) mixer.uncacheRoot(model);
             materials.forEach((m) => m.dispose());
-            if (albedoTex) albedoTex.dispose();
-            if (normalTex) normalTex.dispose();
+            ownedGeometries.forEach((geometry) => geometry.dispose());
+            ownedTextures.forEach((texture) => texture.dispose());
             shadowMesh.geometry.dispose();
+            (shadowMesh.material as THREE.MeshBasicMaterial).map?.dispose();
             (shadowMesh.material as THREE.Material).dispose();
             auraMesh.geometry.dispose();
+            (auraMesh.material as THREE.MeshBasicMaterial).map?.dispose();
             (auraMesh.material as THREE.Material).dispose();
           };
 
@@ -550,8 +560,16 @@ export class CharacterLoader {
     group.name = `FighterQuad_${characterId}_${isPlayer1 ? 'P1' : 'P2'}`;
 
     // Resolve best concept texture
-    const textureUrl = (await this.resolveFirstExisting(paths.albedoCandidates)) || `/assets/characters/${characterId}/texture_albedo.jpeg`;
-    const texture = await this.loadTexture(textureUrl, accentColor);
+    const textureUrl = await this.resolveFirstExisting(paths.spriteCandidates);
+    if (!textureUrl) {
+      throw new Error(`[CharacterLoader] No GLTF model or sprite image found for "${characterId}".`);
+    }
+    const texture = await this.loadTexture(textureUrl);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.generateMipmaps = false;
+    texture.needsUpdate = true;
 
     // Dimensions for balanced fighting game proportions (~2.35m height)
     const quadHeight = 2.45;
@@ -561,15 +579,16 @@ export class CharacterLoader {
     const planeGeo = new THREE.PlaneGeometry(quadWidth, quadHeight);
     planeGeo.translate(0, quadHeight / 2, 0);
 
-    // PBR Standard Material with crisp alpha cutout & shadow support
+    // PBR Standard Material with arcade-scale alpha cutout and shadow support
     const cardMaterial = new THREE.MeshStandardMaterial({
       map: texture,
       transparent: true,
-      alphaTest: 0.12, // Crisp alpha cutout per specification
+      alphaTest: 0.5,
       roughness: 0.42,
       metalness: 0.22,
       side: THREE.DoubleSide,
       shadowSide: THREE.DoubleSide,
+      depthWrite: true,
       polygonOffset: true,
       polygonOffsetFactor: 1,
       polygonOffsetUnits: 1,
@@ -696,86 +715,12 @@ export class CharacterLoader {
 
     const dispose = () => {
       materials.forEach((m) => m.dispose());
-      texture.dispose();
       planeGeo.dispose();
       shadowMesh.geometry.dispose();
+      (shadowMesh.material as THREE.MeshBasicMaterial).map?.dispose();
       (shadowMesh.material as THREE.Material).dispose();
       auraMesh.geometry.dispose();
-      (auraMesh.material as THREE.Material).dispose();
-    };
-
-    return {
-      characterId,
-      isPlayer1,
-      group,
-      mainMesh: cardMesh,
-      shadowMesh,
-      auraMesh,
-      is3DModel: false,
-      materials,
-      updatePose,
-      dispose,
-    };
-  }
-
-  /**
-   * Guaranteed procedural rig fallback if any network or asset loading fails.
-   */
-  private buildProceduralRigFallback(
-    characterId: string,
-    isPlayer1: boolean,
-    accentColor: string
-  ): Fighter3DRigInstance {
-    const group = new THREE.Group();
-    group.name = `FighterFallback_${characterId}_${isPlayer1 ? 'P1' : 'P2'}`;
-
-    const texture = createProceduralFighterTexture(characterId, accentColor);
-    const quadHeight = 2.45;
-    const quadWidth = 2.15;
-
-    const planeGeo = new THREE.PlaneGeometry(quadWidth, quadHeight);
-    planeGeo.translate(0, quadHeight / 2, 0);
-
-    const cardMaterial = new THREE.MeshStandardMaterial({
-      map: texture,
-      transparent: true,
-      alphaTest: 0.1,
-      roughness: 0.5,
-      metalness: 0.2,
-      side: THREE.DoubleSide,
-    });
-
-    const cardMesh = new THREE.Mesh(planeGeo, cardMaterial);
-    cardMesh.castShadow = true;
-    cardMesh.receiveShadow = true;
-    group.add(cardMesh);
-
-    const shadowMesh = createGroundShadow();
-    const auraMesh = createAuraMesh(accentColor);
-    group.add(shadowMesh);
-    group.add(auraMesh);
-
-    const materials: THREE.Material[] = [cardMaterial];
-
-    const updatePose = (entity: FightingEntity, delta: number, isHitstun: boolean) => {
-      cardMesh.scale.x = entity.facing === 1 ? 1.0 : -1.0;
-      auraMesh.rotation.z += delta * 1.5;
-      auraMesh.visible = (entity.superMeter ?? 0) >= 100 || !!entity.isMaxMode;
-      if (isHitstun || entity.state.startsWith('HIT_')) {
-        cardMaterial.emissive.setHex(0xffffff);
-        cardMaterial.emissiveIntensity = 0.7;
-      } else {
-        cardMaterial.emissiveIntensity = 0;
-      }
-    };
-
-    const dispose = () => {
-      materials.forEach((m) => m.dispose());
-      texture.dispose();
-      planeGeo.dispose();
-      shadowMesh.geometry.dispose();
-      (shadowMesh.material as THREE.Material).dispose();
-      auraMesh.geometry.dispose();
+      (auraMesh.material as THREE.MeshBasicMaterial).map?.dispose();
       (auraMesh.material as THREE.Material).dispose();
     };
 
@@ -796,7 +741,8 @@ export class CharacterLoader {
   private applyTexturesToPBRMaterial(
     mat: THREE.Material,
     albedoTex: THREE.Texture | null,
-    normalTex: THREE.Texture | null
+    normalTex: THREE.Texture | null,
+    roughnessTex: THREE.Texture | null
   ) {
     if (mat instanceof THREE.MeshStandardMaterial || mat instanceof THREE.MeshPhysicalMaterial) {
       if (albedoTex) {
@@ -805,10 +751,69 @@ export class CharacterLoader {
       if (normalTex) {
         mat.normalMap = normalTex;
       }
+      if (roughnessTex) {
+        mat.roughnessMap = roughnessTex;
+      }
       mat.roughness = THREE.MathUtils.clamp(mat.roughness ?? 0.45, 0.3, 0.8);
       mat.metalness = THREE.MathUtils.clamp(mat.metalness ?? 0.2, 0.1, 0.6);
       mat.needsUpdate = true;
     }
+  }
+
+  private toPbrMaterial(material: THREE.Material): THREE.MeshStandardMaterial {
+    if (material instanceof THREE.MeshStandardMaterial) return material.clone();
+
+    const source = material as THREE.Material & {
+      color?: THREE.Color;
+      map?: THREE.Texture | null;
+      alphaMap?: THREE.Texture | null;
+      normalMap?: THREE.Texture | null;
+      roughnessMap?: THREE.Texture | null;
+      roughness?: number;
+      metalness?: number;
+    };
+    const pbr = new THREE.MeshStandardMaterial({
+      color: source.color?.clone() || new THREE.Color(0xffffff),
+      map: source.map || null,
+      alphaMap: source.alphaMap || null,
+      normalMap: source.normalMap || null,
+      roughnessMap: source.roughnessMap || null,
+      roughness: source.roughness ?? 0.58,
+      metalness: source.metalness ?? 0.08,
+      transparent: material.transparent,
+      opacity: material.opacity,
+      alphaTest: material.alphaTest,
+      side: material.side,
+      depthWrite: material.depthWrite,
+      vertexColors: 'vertexColors' in material ? material.vertexColors : false,
+    });
+    pbr.name = material.name;
+    return pbr;
+  }
+
+  private animationForState(state: string, actions: Map<string, THREE.AnimationAction>): string | null {
+    const normalized = state.toLowerCase();
+    const candidates = normalized.includes('hit') || normalized.includes('hurt')
+      ? ['hurt', 'hit', 'damage']
+      : normalized.includes('jump')
+        ? ['jump', 'air']
+        : normalized.includes('crouch')
+          ? ['crouch', 'duck']
+          : normalized.includes('block') || normalized.includes('guard')
+            ? ['block', 'guard', 'defend']
+            : normalized.includes('walk')
+              ? [normalized.includes('back') ? 'walk_backward' : 'walk_forward', 'walk', 'run']
+              : normalized.includes('kick')
+                ? ['kick', normalized.includes('heavy') ? 'heavy_kick' : 'light_kick']
+                : normalized.includes('punch') || normalized.includes('attack') || normalized.includes('special')
+                  ? ['attack', normalized.includes('heavy') ? 'heavy_punch' : 'light_punch', 'punch']
+                  : normalized.includes('ko') || normalized.includes('knock')
+                    ? ['ko', 'knockdown', 'fall']
+                    : ['idle', 'stand'];
+    const candidateKeys = candidates.map((candidate) => candidate.replace(/[^a-z0-9]/g, ''));
+    return candidateKeys.find((candidate) => actions.has(candidate))
+      || [...actions.keys()].find((name) => candidateKeys.some((candidate) => name.includes(candidate)))
+      || null;
   }
 }
 

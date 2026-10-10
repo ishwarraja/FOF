@@ -106,9 +106,6 @@ interface FofStageCanvasProps {
   onInputHistoryAdd?: (key: string) => void;
   cpuDifficulty?: number;
   isTrainingMode?: boolean;
-  hitboxOverlayEnabled?: boolean;
-  isHitboxOverlayEnabled?: boolean;
-  onToggleHitboxOverlay?: (active: boolean) => void;
 }
 
 interface SpecialMoveFlare {
@@ -157,9 +154,6 @@ export const FofStageCanvas: React.FC<FofStageCanvasProps> = ({
   onInputHistoryAdd,
   cpuDifficulty = 3,
   isTrainingMode = false,
-  hitboxOverlayEnabled,
-  isHitboxOverlayEnabled,
-  onToggleHitboxOverlay,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animFrameIdRef = useRef<number | null>(null);
@@ -235,25 +229,8 @@ export const FofStageCanvas: React.FC<FofStageCanvasProps> = ({
   const [connectedGamepadName, setConnectedGamepadName] = useState<string | null>(null);
   const [gamepadNotice, setGamepadNotice] = useState<string | null>(null);
 
-  // Frame-Perfect Hitbox & Hurtbox Debug Validation Mode (Developer Key: ~ / F12, Default: false)
-  const [isDebugMode, setIsDebugMode] = useState<boolean>(() => {
-    if (hitboxOverlayEnabled !== undefined) return hitboxOverlayEnabled;
-    if (isHitboxOverlayEnabled !== undefined) return isHitboxOverlayEnabled;
-    try {
-      const saved = localStorage.getItem('fof_debug_hitbox_mode');
-      return saved !== null ? saved === 'true' : false;
-    } catch {
-      return false;
-    }
-  });
-
-  useEffect(() => {
-    if (hitboxOverlayEnabled !== undefined) {
-      setIsDebugMode(hitboxOverlayEnabled);
-    } else if (isHitboxOverlayEnabled !== undefined) {
-      setIsDebugMode(isHitboxOverlayEnabled);
-    }
-  }, [hitboxOverlayEnabled, isHitboxOverlayEnabled]);
+  // Diagnostic overlays are intentionally session-only and default off.
+  const [isDebugMode, setIsDebugMode] = useState(false);
 
   // 2D Fighter Sprite Style: 'artwork' (Character Battle Artwork Picture) vs 'vector' (Articulated Skeletal Rig)
   const [spriteStyle, setSpriteStyle] = useState<'artwork' | 'vector'>(() => {
@@ -274,18 +251,6 @@ export const FofStageCanvas: React.FC<FofStageCanvasProps> = ({
       }
       return next;
     });
-  }, []);
-
-  useEffect(() => {
-    const handler = (e: CustomEvent) => {
-      if (typeof e.detail === 'boolean') {
-        setIsDebugMode(e.detail);
-      } else {
-        setIsDebugMode(prev => !prev);
-      }
-    };
-    window.addEventListener('fof-toggle-hitbox-overlay', handler as EventListener);
-    return () => window.removeEventListener('fof-toggle-hitbox-overlay', handler as EventListener);
   }, []);
 
   // 2.5D WebGL Arena Rendering Mode (Path A 3D Perspective + 2D Gameplay)
@@ -438,22 +403,6 @@ export const FofStageCanvas: React.FC<FofStageCanvasProps> = ({
       return next;
     });
   }, []);
-
-  const toggleDebugMode = useCallback(() => {
-    soundFX.playClick();
-    setIsDebugMode(prev => {
-      const next = !prev;
-      try {
-        localStorage.setItem('fof_debug_hitbox_mode', String(next));
-      } catch {
-        // ignore
-      }
-      return next;
-    });
-    if (onToggleHitboxOverlay) {
-      onToggleHitboxOverlay(!isDebugMode);
-    }
-  }, [onToggleHitboxOverlay, isDebugMode]);
 
   // Damage & PERFECT Round Tracking
   const p1TookDamageRef = useRef<boolean>(false);
@@ -1312,16 +1261,10 @@ export const FofStageCanvas: React.FC<FofStageCanvasProps> = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
 
-      // Developer Hotkey: Toggle Hitbox & Frame Data Lab (`~` or `F12`)
+      // Developer-only shortcut: diagnostic overlays never persist between sessions.
       if (e.key === '`' || e.key === '~' || e.code === 'Backquote' || e.key === 'F12' || e.code === 'F12') {
         e.preventDefault();
-        setIsDebugMode(prev => {
-          const next = !prev;
-          try {
-            localStorage.setItem('fof_debug_hitbox_mode', String(next));
-          } catch {}
-          return next;
-        });
+        setIsDebugMode(prev => !prev);
         return;
       }
 
@@ -3182,8 +3125,6 @@ export const FofStageCanvas: React.FC<FofStageCanvasProps> = ({
         onCycleCameraPanningPreset={cycleCameraPanningPreset}
         spriteStyle={spriteStyle}
         onToggleSpriteStyle={toggleSpriteStyle}
-        isDebugMode={isDebugMode}
-        onToggleDebugMode={toggleDebugMode}
         onOpenControlsModal={() => {
           soundFX.playClick();
           setIsControlModalOpen(true);
@@ -3225,8 +3166,6 @@ export const FofStageCanvas: React.FC<FofStageCanvasProps> = ({
         p1Entity={p1Entity}
         p2Entity={p2Entity}
         stageName={currentStageVisual.keyVisualMotif || currentStageVisual.stageId}
-        isDebugMode={isDebugMode}
-        onToggleDebugMode={toggleDebugMode}
         onTakeScreenshot={() => {
           const canvas = containerRef.current?.querySelector('canvas') || document.querySelector('canvas');
           if (canvas) {

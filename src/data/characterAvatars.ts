@@ -87,10 +87,10 @@ function createFighterSvgPortrait(
 
 // Built-in high resolution avatars & portraits for all fighters
 export const FIGHTER_BUILTIN_AVATARS: Record<string, string> = {
-  arjun: resolveCharacterAsset('arjun', 'portrait', '/assets/characters/arjun/portrait.jpeg'),
-  steele: resolveCharacterAsset('steele', 'portrait', '/assets/characters/steele/portrait.jpeg'),
-  meghananda: resolveCharacterAsset('meghananda', 'portrait', '/assets/characters/meghananda/portrait.jpeg'),
-  valeria: resolveCharacterAsset('valeria', 'portrait', '/characters/valeria_portrait.svg'),
+  arjun: resolveCharacterAsset('arjun', 'portrait', '/assets/characters/arjun/portrait.png'),
+  steele: resolveCharacterAsset('steele', 'portrait', '/assets/characters/steele/portrait.png'),
+  meghananda: resolveCharacterAsset('meghananda', 'portrait', '/assets/characters/meghananda/portrait.png'),
+  valeria: resolveCharacterAsset('valeria', 'portrait', '/assets/characters/valeria/portrait.png'),
   maya: resolveCharacterAsset('maya', 'portrait', '/assets/characters/maya/portrait.svg'),
   david: resolveCharacterAsset('david', 'portrait', '/assets/characters/david/portrait.svg'),
   elena: resolveCharacterAsset('elena', 'portrait', '/assets/characters/elena/portrait.svg'),
